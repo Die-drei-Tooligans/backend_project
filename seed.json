@@ -1,0 +1,132 @@
+[
+	{
+		"firstname": "John",
+		"username": "john_doe",
+		"mail": "john.doe@example.com",
+		"password": "password123",
+		"adress": {
+			"city": "New York",
+			"zipCode": 10001,
+			"street": "5th Avenue",
+			"streetNum": 123,
+			"numSupp": "A"
+		}
+	},
+	{
+		"firstname": "Jane",
+		"username": "jane_smith",
+		"mail": "jane.smith@example.com",
+		"password": "password456",
+		"adress": {
+			"city": "Los Angeles",
+			"zipCode": 90001,
+			"street": "Sunset Blvd",
+			"streetNum": 456,
+			"numSupp": "B"
+		}
+	},
+	{
+		"firstname": "Michael",
+		"username": "michael23",
+		"mail": "michael@example.com",
+		"password": "passmike",
+		"adress": {
+			"city": "Chicago",
+			"zipCode": 60601,
+			"street": "Michigan Ave",
+			"streetNum": 789,
+			"numSupp": "C"
+		}
+	},
+	{
+		"firstname": "Emily",
+		"username": "emily_rose",
+		"mail": "emily.rose@example.com",
+		"password": "rosie2024",
+		"adress": {
+			"city": "Houston",
+			"zipCode": 77001,
+			"street": "Main St",
+			"streetNum": 321,
+			"numSupp": "D"
+		}
+	},
+	{
+		"firstname": "Chris",
+		"username": "chris_dev",
+		"mail": "chris.dev@example.com",
+		"password": "chrispass",
+		"adress": {
+			"city": "San Francisco",
+			"zipCode": 94101,
+			"street": "Market St",
+			"streetNum": 654,
+			"numSupp": "E"
+		}
+	},
+	{
+		"firstname": "Sophia",
+		"username": "sophia_star",
+		"mail": "sophia.star@example.com",
+		"password": "sophia2023",
+		"adress": {
+			"city": "Miami",
+			"zipCode": 33101,
+			"street": "Ocean Dr",
+			"streetNum": 987,
+			"numSupp": "F"
+		}
+	},
+	{
+		"firstname": "Daniel",
+		"username": "daniel_k",
+		"mail": "daniel.k@example.com",
+		"password": "dank2023",
+		"adress": {
+			"city": "Seattle",
+			"zipCode": 98101,
+			"street": "Pine St",
+			"streetNum": 741,
+			"numSupp": "G"
+		}
+	},
+	{
+		"firstname": "Laura",
+		"username": "laura90",
+		"mail": "laura90@example.com",
+		"password": "laurapass",
+		"adress": {
+			"city": "Atlanta",
+			"zipCode": 30301,
+			"street": "Peachtree St",
+			"streetNum": 852,
+			"numSupp": "H"
+		}
+	},
+	{
+		"firstname": "David",
+		"username": "david_coder",
+		"mail": "david.coder@example.com",
+		"password": "david2023",
+		"adress": {
+			"city": "Austin",
+			"zipCode": 73301,
+			"street": "Congress Ave",
+			"streetNum": 963,
+			"numSupp": "I"
+		}
+	},
+	{
+		"firstname": "Emma",
+		"username": "emma_loves",
+		"mail": "emma.loves@example.com",
+		"password": "emmalove",
+		"adress": {
+			"city": "San Diego",
+			"zipCode": 92101,
+			"street": "Gaslamp St",
+			"streetNum": 147,
+			"numSupp": "J"
+		}
+	}
+]
