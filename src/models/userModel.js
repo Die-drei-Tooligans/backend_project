@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { carSchema } from "./carModel.js";
-import { bookingSchema } from "./bookingModel.js";
-import { companySchema } from "./companyModel.js";
-import { taskSchema } from "./taskModel.js";
+// import { carSchema } from "./carModel.js";
+// import { bookingSchema } from "./bookingModel.js";
+// import { companySchema } from "./companyModel.js";
+// import { taskSchema } from "./taskModel.js";
 
 //userSchema und adressSchema
 
