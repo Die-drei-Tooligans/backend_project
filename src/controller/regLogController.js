@@ -11,10 +11,9 @@ const SECRET_KEY = process.env.SECRET_KEY;
 export const login = async (req, res, next) => {
 	try {
 		const user = await User.findOne({ username: req.body.username });
-		console.log("login true", user);
+
 		res.json({ message: user });
 	} catch (error) {
-		console.dir(error, { depth: null });
 		res.status(402).json({ message: "Some error." });
 	}
 };
