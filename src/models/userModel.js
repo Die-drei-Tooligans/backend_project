@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { Car } from "./carModel.js";
-// import { Booking } from "./bookingModel.js";
-// import { Company } from "./companyModel.js";
-// import { Task } from "./taskModel.js";
+// import { carModel } from "./carModel.js";
+// import { bookingModel } from "./bookingModel.js";
+// import { companyModel } from "./companyModel.js";
+// import { taskModel } from "./taskModel.js";
 
 //userSchema und adressSchema
 const adressSchema = new mongoose.Schema({
@@ -26,11 +26,11 @@ const userSchema = new mongoose.Schema(
 		isAdmin: { type: Boolean, required: true },
 		//! IF isAdmin === true -> company is required, cars is NOT
 		//! IF isAdmin === false -> company is NOT required, cars is required
-		// company: { type: companySchema },
+		// company: { type: companyModel },
 		cars: {
 			type: [
 				{
-					type: Car,
+					// type: carModel,
 				},
 			],
 			default: [],
@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
 		bookings: {
 			type: [
 				{
-					// type: bookingSchema,
+					// type: bookingModel,
 				},
 			],
 			default: [],

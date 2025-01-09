@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 
-const carSchema = new mongoose.Schema({
-	vehicleRegistrationDocument: {type:vehicleRegistrationDocumentSchema, required:true},
-	vehicleExtraData: {type:vehicleExtraDataSchema, required:true},
+const importantVRDSchema = new mongoose.Schema({
+
 });
 
-const vehicleRegistrationDocumentSchema = new mongoose.Schema({
+const VRDSchema = new mongoose.Schema({
 	registrationNumber: {type:String, required:true},		// Nummer des Fahrzeugscheins
 	licensePlate: {type:String, required:true}, 			// Kennzeichen
 	lastNameOrCompany: {type:String, required:true}, 		// Nachname oder Firma
@@ -74,4 +73,15 @@ const vehicleRegistrationDocumentSchema = new mongoose.Schema({
 	remarksAndExceptions: {type:String, required:true},		//! Hinweise und Ausnahmen
 });
 
-export const Car = mongoose.models.car || mongoose.model("car", carSchema);
+const extraCarDataSchema = new mongoose.Schema({
+
+});
+
+
+const carSchema = new mongoose.Schema({
+	importantVRD: {type:importantVRDSchema},
+	VRD: {type:VRDSchema},
+	extraCarData: {type:extraCarDataSchema},
+});
+
+export const carModel = mongoose.models.car || mongoose.model("car", carSchema);
