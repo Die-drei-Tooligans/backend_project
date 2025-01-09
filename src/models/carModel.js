@@ -1,6 +1,22 @@
 import mongoose from "mongoose";
 
-const BriefSchema = new mongoose.Schema({
+const carSchema = new mongoose.Schema({
+	vehicleRegistrationDocument: {type:vehicleRegistrationDocumentSchema, required:true},
+	vehicleExtraData: {type:vehicleExtraDataSchema, required:true},
+});
+
+const vehicleRegistrationDocumentSchema = new mongoose.Schema({
+	registrationNumber: {type:String, required:true},
+	lastNameOrCompany: {type:String, required:true},
+	firstName: {type:String, required:true},
+	adress: {type:String, required:true},
+});
+
+
+
+
+
+const caSchema = new mongoose.Schema({
 	hersteller: { type: String, required: true },
 	herstellerSchluessel: { type: String },
 	modell: { type: String, required: true },
