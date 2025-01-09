@@ -25,5 +25,5 @@ const taskSchema = new mongoose.Schema({
     slots_booked: {type:Object, default:{}}
 },{minimize:false})
 
-export const topicModel = mongoose.models.topic || mongoose.model('topic', topicSchema)
-export const taskModel = mongoose.models.task || mongoose.model('task', taskSchema)
+export const Topic = mongoose.models.topic || mongoose.model('topic', topicSchema)
+export const Task = mongoose.models.task || mongoose.model('task', taskSchema)

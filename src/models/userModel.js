@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-// import { carSchema } from "./carModel.js";
-// import { bookingSchema } from "./bookingModel.js";
-// import { companySchema } from "./companyModel.js";
-// import { taskSchema } from "./taskModel.js";
+import { Car } from "./carModel.js";
+// import { Booking } from "./bookingModel.js";
+// import { Company } from "./companyModel.js";
+// import { Task } from "./taskModel.js";
 
 //userSchema und adressSchema
 const adressSchema = new mongoose.Schema({
@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
 		cars: {
 			type: [
 				{
-					// type: carSchema,
+					type: Car,
 				},
 			],
 			default: [],
@@ -44,14 +44,7 @@ const userSchema = new mongoose.Schema(
 			],
 			default: [],
 		},
-		tasks: {
-			type: [
-				{
-					// type: taskSchema,
-				},
-			],
-			default: [],
-		},
+		tasks: {type: Array, default: []},
 	},
 	{ minimize: false },
 	{ timestamps: true }
