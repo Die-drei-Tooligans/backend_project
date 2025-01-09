@@ -1,4 +1,10 @@
 import mongoose from "mongoose";
+import { carSchema } from "./carModel.js";
+import { bookingSchema } from "./bookingModel.js";
+import { companySchema } from "./companyModel.js";
+import { taskSchema } from "./taskModel.js";
+
+//userSchema und addressSchema
 
 const userSchema = new mongoose.Schema({
 	firstname: {type:String, required:true},
@@ -10,6 +16,9 @@ const userSchema = new mongoose.Schema({
 	address: {type:addressSchema, required:true},
 	dob: {type:Date, required:true},
 	isAdmin: {type:Boolean, required:true},
+	//! IF isAdmin === true -> company is required, cars is NOT
+	//! IF isAdmin === false -> company is NOT required, cars is required
+	company: {type:companySchema},
 	cars: {
 		type: [
 			{
@@ -18,6 +27,7 @@ const userSchema = new mongoose.Schema({
 		],
 		default:[]
 	},
+	//! bookingSchema und taskSchema müssen unterschiedliche Daten verfügbar machen
 	bookings: {
 		type: [
 			{
@@ -26,11 +36,16 @@ const userSchema = new mongoose.Schema({
 		],
 		default:[]
 	},
-	company: {type:companySchema}
+	tasks: {
+		type: [
+			{
+				type: taskSchema
+			}
+		],
+		default:[]
+	}
+	
 }, {minimize:false}, {timestamps:true})
-
-//! IF isAdmin === true -> company is required, cars is NOT
-//! IF isAdmin === false -> company is NOT required, cars is required
 
 const addressSchema = new mongoose.Schema({
 
