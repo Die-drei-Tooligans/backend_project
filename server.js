@@ -2,6 +2,7 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import express from "express";
 import userRouter from "./src/routes/userRouter.js";
+import regLogRouter from "./src/routes/regLogRouter.js";
 import cors from "cors";
 
 const app = express();
@@ -16,6 +17,8 @@ const PORT = process.env.PORT;
 
 app.use("/", userRouter);
 app.use("/user", userRouter);
+app.use("/loginnew", regLogRouter);
+
 mongoose
 	.connect(URL)
 	.then(() => {
