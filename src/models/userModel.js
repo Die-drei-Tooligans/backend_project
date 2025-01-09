@@ -15,15 +15,16 @@ const adressSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema(
 	{
-		firstname: { type: String, required: true },
-		lastname: { type: String, required: true },
+		firstname: { type: String, required: false },
+		lastname: { type: String, required: false },
+		username: { type: String, unique: true },
 		image: { type: String },
-		email: { type: String, required: true, unique: true },
+		email: { type: String, required: false, unique: true },
 		password: { type: String, required: true },
-		phone: { type: Number, required: true, unique: true },
-		adress: { type: adressSchema, required: true },
-		dob: { type: Date, required: true },
-		isAdmin: { type: Boolean, required: true },
+		phone: { type: Number, required: false, unique: true },
+		adress: { type: adressSchema, required: false },
+		dob: { type: Date, required: false },
+		isAdmin: { type: Boolean, required: false },
 		//! IF isAdmin === true -> company is required, cars is NOT
 		//! IF isAdmin === false -> company is NOT required, cars is required
 		// company: { type: companyModel },
