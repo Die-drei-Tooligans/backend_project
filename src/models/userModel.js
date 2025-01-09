@@ -5,6 +5,13 @@ import mongoose from "mongoose";
 // import { taskSchema } from "./taskModel.js";
 
 //userSchema und adressSchema
+const adressSchema = new mongoose.Schema({
+	city: { type: String, required: true },
+	zipCode: { type: Number, required: true },
+	street: { type: String, required: true },
+	streetNum: { type: Number, required: true },
+	numSupp: { type: String, required: true },
+});
 
 const userSchema = new mongoose.Schema(
 	{
@@ -19,11 +26,11 @@ const userSchema = new mongoose.Schema(
 		isAdmin: { type: Boolean, required: true },
 		//! IF isAdmin === true -> company is required, cars is NOT
 		//! IF isAdmin === false -> company is NOT required, cars is required
-		company: { type: companySchema },
+		// company: { type: companySchema },
 		cars: {
 			type: [
 				{
-					type: carSchema,
+					// type: carSchema,
 				},
 			],
 			default: [],
@@ -32,7 +39,7 @@ const userSchema = new mongoose.Schema(
 		bookings: {
 			type: [
 				{
-					type: bookingSchema,
+					// type: bookingSchema,
 				},
 			],
 			default: [],
@@ -40,7 +47,7 @@ const userSchema = new mongoose.Schema(
 		tasks: {
 			type: [
 				{
-					type: taskSchema,
+					// type: taskSchema,
 				},
 			],
 			default: [],
@@ -50,24 +57,13 @@ const userSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-const adressSchema = new mongoose.Schema({
-	city: { type: String, required: true },
-	zipCode: { type: Number, required: true },
-	street: { type: String, required: true },
-	streetNum: { type: Number, required: true },
-	numSupp: { type: String, required: true },
-});
-
-export const userModel =
-	mongoose.models.user || mongoose.model("user", userSchema);
-
-// carSchema (erledigte Reperaturen, Dokumente), bookingSchema, companySchema
-
-/*
 userSchema.methods.toJSON = function () {
 	const obj = this.toObject();
 	delete obj.password;
 	delete obj._id;
 	return obj;
 };
-*/
+
+export const User = mongoose.models.user || mongoose.model("user", userSchema);
+
+// carSchema (erledigte Reperaturen, Dokumente), bookingSchema, companySchema
