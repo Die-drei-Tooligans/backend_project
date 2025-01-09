@@ -4,7 +4,7 @@ import { bookingSchema } from "./bookingModel.js";
 import { companySchema } from "./companyModel.js";
 import { taskSchema } from "./taskModel.js";
 
-//userSchema und addressSchema
+//userSchema und adressSchema
 
 const userSchema = new mongoose.Schema({
 	firstname: {type:String, required:true},
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
 	email: {type:String, required:true, unique:true},
 	password: {type:String, required:true},
 	phone: {type:Number, required:true, unique:true},
-	address: {type:addressSchema, required:true},
+	adress: {type:adressSchema, required:true},
 	dob: {type:Date, required:true},
 	isAdmin: {type:Boolean, required:true},
 	//! IF isAdmin === true -> company is required, cars is NOT
@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
 	
 }, {minimize:false}, {timestamps:true})
 
-const addressSchema = new mongoose.Schema({
+const adressSchema = new mongoose.Schema({
 
 	city: {type:String, required:true},
 	zipCode: {type:Number, required:true},
