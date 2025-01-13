@@ -51,8 +51,8 @@ export const createUser = async (req, res, next) => {
 			});
 		}
 
-		const hashedPW = await bcrypt.hash(password, 10);
-		console.log(hashedPW);
+		// const hashedPW = await bcrypt.hash(password, 10);
+		// console.log(hashedPW);
 
 		const newUser = await User.create({ ...req.body, password: hashedPW });
 		console.log(newUser);

@@ -11,19 +11,19 @@ const adressSchema = new mongoose.Schema({
 	zipCode: { type: Number, required: false },
 	street: { type: String, required: false },
 	streetNum: { type: Number, required: false },
-	numSupp: { type: String, required: false }
+	numSupp: { type: String, required: false },
 });
 
 const personalDataSchema = new mongoose.Schema({
-		firstname: { type: String, required: false },
-		lastname: { type: String, required: false },
-		username: { type: String, unique: true },
-		image: { type: String },
-		email: { type: String, required: false, unique: true },
-		password: { type: String, required: false },
-		phone: { type: Number, required: false, unique: true },
-		adress: { type: adressSchema, required: false },
-		dob: { type: Date, required: false }
+	firstname: { type: String, required: false },
+	lastname: { type: String, required: false },
+	username: { type: String, unique: true },
+	image: { type: String },
+	email: { type: String, required: false, unique: true },
+	password: { type: String, required: false },
+	phone: { type: Number, required: false, unique: true },
+	adress: { type: adressSchema, required: false },
+	dob: { type: Date, required: false },
 });
 
 const userSchema = new mongoose.Schema(
@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema(
 				},
 			],
 			default: [],
-		}
+		},
 	},
 	{ minimize: false },
 	{ timestamps: true }
@@ -54,9 +54,9 @@ const adminSchema = new mongoose.Schema({
 	person: { type: personalDataSchema },
 	company: {
 		type: {
-			type: companyModel,
+			// type: companyModel,
 		},
-	}
+	},
 });
 
 userSchema.methods.toJSON = function () {
@@ -67,6 +67,6 @@ userSchema.methods.toJSON = function () {
 };
 
 export const User = mongoose.models.user || mongoose.model("user", userSchema);
-export const Admin = mongoose.models.admin || mongoose.model("admin", adminSchema);
-
+export const Admin =
+	mongoose.models.admin || mongoose.model("admin", adminSchema);
 // carSchema (erledigte Reperaturen, Dokumente), bookingSchema, companySchema
