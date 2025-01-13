@@ -5,12 +5,13 @@ import { companyModel } from "./companyModel.js";
 // import { taskModel } from "./taskModel.js";
 
 //userSchema und adressSchema
-export const adressSchema = new mongoose.Schema({
-	city: { type: String, required: true },
-	zipCode: { type: Number, required: true },
-	street: { type: String, required: true },
-	streetNum: { type: Number, required: true },
-	numSupp: { type: String, required: true },
+
+const adressSchema = new mongoose.Schema({
+	city: { type: String, required: false },
+	zipCode: { type: Number, required: false },
+	street: { type: String, required: false },
+	streetNum: { type: Number, required: false },
+	numSupp: { type: String, required: false }
 });
 
 const personalDataSchema = new mongoose.Schema({
@@ -19,7 +20,7 @@ const personalDataSchema = new mongoose.Schema({
 		username: { type: String, unique: true },
 		image: { type: String },
 		email: { type: String, required: false, unique: true },
-		password: { type: String, required: true },
+		password: { type: String, required: false },
 		phone: { type: Number, required: false, unique: true },
 		adress: { type: adressSchema, required: false },
 		dob: { type: Date, required: false }
