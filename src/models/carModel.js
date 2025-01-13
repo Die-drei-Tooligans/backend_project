@@ -1,9 +1,45 @@
 import mongoose from "mongoose";
 
 const importantVRDSchema = new mongoose.Schema({
-
+	licensePlate: {type:String, required:true}, 			// Kennzeichen
+	lastNameOrCompany: {type:String, required:true}, 		// Nachname oder Firma
+	firstName: {type:String, required:true},				// Vorname
+	adress: {type:String, required:true},					// Adresse
+	nextHU: {type:Date, required:true},						//! Nächste Hauptuntersuchung
+	dateOfFirstRegistration: {type:Date, required:true},	//! Datum der Erstzulassung
+	manufacturerNumber: {type:String, required:true},		//! Herstellernummer
+	typeNumber: {type:String, required:true},				//! Typnummer
+	vehicleClass: {type:String, required:true},				//! Fahrzeugklasse
+	FIN: {type:String, required:true},						//! Fahrzeugidentifikationsnummer (FIN)
+	checkDigit: {type:Number, required:true},				//! Prüfziffer
+	make: {type:String, required:true},						//! Marke
+	type: {type:String, required:true},						//! Typ
+	variant: {type:String, required:true},					//! Variante
+	version: {type:String, required:true},					//! Version
 });
 
+
+
+const extraCarDataSchema = new mongoose.Schema({
+	tasks: {type:Array, default:[]},
+});
+
+
+const carSchema = new mongoose.Schema({
+	importantVRD: {type:importantVRDSchema},
+	// VRD: {type:VRDSchema},
+	extraCarData: {type:extraCarDataSchema},
+});
+
+export const carModel = mongoose.models.car || mongoose.model("car", carSchema);
+
+
+
+
+
+
+
+/*
 const VRDSchema = new mongoose.Schema({
 	registrationNumber: {type:String, required:true},		// Nummer des Fahrzeugscheins
 	licensePlate: {type:String, required:true}, 			// Kennzeichen
@@ -72,16 +108,4 @@ const VRDSchema = new mongoose.Schema({
 	otherNotes: {type:String},								// Sonstige Bemerkungen
 	remarksAndExceptions: {type:String, required:true},		//! Hinweise und Ausnahmen
 });
-
-const extraCarDataSchema = new mongoose.Schema({
-
-});
-
-
-const carSchema = new mongoose.Schema({
-	importantVRD: {type:importantVRDSchema},
-	VRD: {type:VRDSchema},
-	extraCarData: {type:extraCarDataSchema},
-});
-
-export const carModel = mongoose.models.car || mongoose.model("car", carSchema);
+*/
