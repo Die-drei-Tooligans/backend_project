@@ -4,6 +4,6 @@ import { createUser, login } from "../controller/regLogController.js";
 
 const regLogRouter = express.Router();
 
-regLogRouter.route("/loginnew", verifyPassword).get(login);
+regLogRouter.route("/").get(login);
 
 export default regLogRouter;

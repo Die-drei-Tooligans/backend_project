@@ -13,4 +13,5 @@ export const verifyToken = (req, res) => {
 		req.user = decoded;
 		res.status(200).json({ message: "Authorized" });
 	});
+	console.log(token);
 };

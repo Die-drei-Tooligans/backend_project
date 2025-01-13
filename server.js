@@ -1,9 +1,11 @@
 import "dotenv/config";
 import mongoose from "mongoose";
 import express from "express";
+import cors from "cors";
+
 import userRouter from "./src/routes/userRouter.js";
 import regLogRouter from "./src/routes/regLogRouter.js";
-import cors from "cors";
+import { verifyPassword } from "./src/utils/auth/verifyPassword.js";
 
 const app = express();
 
@@ -16,7 +18,6 @@ const URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT;
 
 app.use("/", userRouter);
-app.use("/user", userRouter);
 app.use("/loginnew", regLogRouter);
 
 mongoose
