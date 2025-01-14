@@ -9,11 +9,12 @@ const personalDataSchema = new mongoose.Schema(
 		image: { type: String },
 		mail: { type: String, required: false, unique: true },
 		password: { type: String, required: false },
-		phone: { type: Number, required: false, unique: true },
+		phone: { type: Number, required: false },
 		adress: { type: adressSchema, required: false },
 		dob: { type: Date, required: false },
 	},
 	{ _id: false }
 );
+
 
 export default personalDataSchema;
