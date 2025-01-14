@@ -14,17 +14,12 @@ import {
 } from "../controller/userController.js";
 
 import { authorize } from "../middleware/authorize.js";
-import { createHashedPassword } from "../utils/auth/hashPassword.js";
 
 const userRouter = express.Router();
 
 userRouter.route("/login").get(login);
 
-userRouter
-	.route("/")
-	.get(getAllUsers)
-	.post(createHashedPassword, createUser)
-	.delete(deleteAllUsers);
+userRouter.route("/").get(getAllUsers).post(createUser).delete(deleteAllUsers);
 
 userRouter
 	.route("/user")

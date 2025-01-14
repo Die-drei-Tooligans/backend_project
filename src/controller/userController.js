@@ -43,18 +43,19 @@ export const getSingelUser = async (req, res, next) => {
 
 export const createUser = async (req, res, next) => {
 	try {
-		const { firstname, username, mail, password } = req.body;
+		const { firstname, username, mail, password } = req.body.person;
 
-		if (await User.findOne({ username })) {
+		if (await User.findOne({ "person.username": username })) {
 			return res.status(403).json({
 				message: "Username already exists. Please choose another one.",
 			});
 		}
 
-		// const hashedPW = await bcrypt.hash(password, 10);
-		// console.log(hashedPW);
+		const hashedPW = await bcrypt.hash(password, 10);
 
-		const newUser = await User.create({ ...req.body, password: hashedPW });
+		const newUser = await User.create({
+			person: { ...req.body.person, password: hashedPW },
+		});
 		console.log(newUser);
 
 		sendEmail(username, mail);
@@ -70,20 +71,27 @@ export const createUser = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
 	try {
-		const user = await User.findOne({ username: req.body.username });
+		const user = await User.findOne({
+			"person.username": req.body.person.username,
+		});
+
 		const hashed = await compareWithHashedPassword(
-			req.body.password,
-			user.password
+			req.body.person.password,
+			user.person.password
 		);
-		console.log("login");
+
 		if (!user || !hashed) {
 			return res.json({ message: "Invalid credentials" });
 		}
 
-		const token = await createToken({ user: user.username }, SECRET_KEY, {
-			expiresIn: "1h",
-		});
-
+		const token = await createToken(
+			{ username: user.person.username },
+			SECRET_KEY,
+			{
+				expiresIn: "1h",
+			}
+		);
+		console.log(token);
 		res.status(200)
 			.cookie("token", token, {
 				httpOnly: true,
@@ -91,7 +99,7 @@ export const login = async (req, res, next) => {
 			.json({ message: "Logged in.", token });
 	} catch (error) {
 		console.dir(error, { depth: null });
-		res.status(402).json({ message: "Some error." });
+		res.status(402).json({ message: "Some error.", error });
 	}
 };
 
