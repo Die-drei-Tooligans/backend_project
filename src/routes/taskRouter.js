@@ -9,12 +9,14 @@ import {
 } from "../controller/taskController.js";
 const taskRouter = express.Router();
 
-taskRouter.route("/tasks").get(getAllTasks).post(createTask);
+taskRouter
+  .route("/tasks")
+  .get(getAllTasks)
+  .post(createTask);
 
 taskRouter
   .route("/tasks/:id")
   .get(getTask)
   .patch(softDeleteTask)
   .put(updateTask)
-  .delete(deleteTask);
   .delete(deleteTask);
