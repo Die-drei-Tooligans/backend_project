@@ -16,13 +16,13 @@ const importantVRDSchema = new mongoose.Schema({
 	type: {type:String, required:true},						//! Typ
 	variant: {type:String, required:true},					//! Variante
 	version: {type:String, required:true},					//! Version
-});
+}, { _id: false });
 
 
 
 const extraCarDataSchema = new mongoose.Schema({
 	tasks: {type:Array, default:[]},
-});
+}, { _id: false });
 
 
 const carSchema = new mongoose.Schema({
@@ -31,7 +31,7 @@ const carSchema = new mongoose.Schema({
 	extraCarData: {type:extraCarDataSchema},
 });
 
-export const carModel = mongoose.models.car || mongoose.model("car", carSchema);
+export const Car = mongoose.models.car || mongoose.model("car", carSchema);
 
 
 
