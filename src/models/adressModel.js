@@ -8,4 +8,4 @@ const adressSchema = new mongoose.Schema({
     numSupp: { type: String, required: false },
 }, { _id: false });
 
-export const Adress = mongoose.models.adress || mongoose.model("adress", adressSchema);
+export default adressSchema;
