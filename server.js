@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 
 import userRouter from "./src/routes/userRouter.js";
+import adminRouter from "./src/routes/adminRouter.js";
 
 import { verifyPassword } from "./src/utils/auth/verifyPassword.js";
 
@@ -19,6 +20,7 @@ const PORT = process.env.PORT;
 
 app.use("/", userRouter);
 // app.use("/loginnew", regLogRouter);
+app.use('/admin', adminRouter);
 
 mongoose
 	.connect(URL)
