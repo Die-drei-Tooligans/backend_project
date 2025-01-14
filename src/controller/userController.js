@@ -31,11 +31,12 @@ export const deleteAllUsers = async (req, res, next) => {
 
 export const getSingelUser = async (req, res, next) => {
 	try {
-		const { mail } = req.body;
-		const user = await User.findOne({ mail });
-		if (user) {
-			res.status(200).json({ message: user });
+		const { mail } = req.body.person;
+		const user = await User.person.findOne({ mail });
+		if (!user) {
+			return res.status(400).json({ message: "Wrong mail adress" });
 		}
+		res.status(200).json({ message: user });
 	} catch (error) {
 		next(error);
 	}
