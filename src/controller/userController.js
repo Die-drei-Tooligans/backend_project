@@ -56,7 +56,6 @@ export const createUser = async (req, res, next) => {
 		const newUser = await User.create({
 			person: { ...req.body.person, password: hashedPW },
 		});
-		console.log(newUser);
 
 		sendEmail(username, mail);
 
