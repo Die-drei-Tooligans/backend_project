@@ -5,7 +5,7 @@ import { companySchema } from "./companyModel.js";
 
 const userSchema = new mongoose.Schema(
 	{
-		person: { type: mongoose.Schema.Types.ObjectId, ref: "personalData" },
+		person: { type: personalDataSchema },
 		cars: {
 			type: [
 				{
