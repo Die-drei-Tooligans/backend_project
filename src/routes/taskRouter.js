@@ -1,3 +1,4 @@
+import express from "express";
 import {
   getAllTasks,
   getTask,
@@ -6,13 +7,14 @@ import {
   softDeleteTask,
   deleteTask,
 } from "../controller/taskController.js";
+const taskRouter = express.Router();
 
-const userRouter = express.Router();
+taskRouter.route("/tasks").get(getAllTasks).post(createTask);
 
-userRouter.route("/tasks").get(getAllTasks).post(createTask);
-
-userRouter
+taskRouter
   .route("/tasks/:id")
   .get(getTask)
-  .patch(updateTask)
+  .patch(softDeleteTask)
+  .put(updateTask)
+  .delete(deleteTask);
   .delete(deleteTask);
