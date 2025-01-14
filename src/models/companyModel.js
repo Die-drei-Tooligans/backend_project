@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import adressSchema from "./adressModel.js";
 import { taskSchema } from "./taskModel.js";
 
-export const companySchema = new mongoose.Schema(
+const companySchema = new mongoose.Schema(
 	{
 		name: { type: String, required: true },
 		adress: { type: adressSchema, required: true },
