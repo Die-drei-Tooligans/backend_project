@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
+import adressSchema from "./adressModel.js";
+import { taskSchema } from "./taskModel.js";
 
-const companySchema = new mongoose.Schema(
+export const companySchema = new mongoose.Schema(
 	{
 		name: { type: String, required: true },
-		// adress: { type: adressModel, required: true },
+		adress: { type: adressSchema, required: true },
 		phone: { type: Number, required: true },
 		email: { type: String, required: true },
 		website: { type: String, required: true },
@@ -22,7 +24,7 @@ const companySchema = new mongoose.Schema(
 		tasks: {
 			type: [
 				{
-					// type: taskModel,
+					type: taskSchema
 				},
 			],
 		},

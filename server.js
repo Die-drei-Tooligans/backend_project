@@ -29,6 +29,5 @@ mongoose
 		});
 	})
 	.catch((error) => {
-		process.exit(1);
 		throw new Error(error);
 	});

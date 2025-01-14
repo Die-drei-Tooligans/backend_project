@@ -5,7 +5,7 @@ const topicSchema = new mongoose.Schema({
 	image: {type:String, required:true}
 },{minimize:false})
 
-const taskSchema = new mongoose.Schema({
+export const taskSchema = new mongoose.Schema({
     name: {type:String, required:true, unique:true},
     topic: {type:String, required:true},
     image: {type:String, required:true},

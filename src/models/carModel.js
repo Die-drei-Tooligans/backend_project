@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { taskSchema } from "./taskModel.js";
 
-const importantVRDSchema = new mongoose.Schema({
+const carSchema = new mongoose.Schema({
 	licensePlate: {type:String, required:true}, 			// Kennzeichen
 	lastNameOrCompany: {type:String, required:true}, 		// Nachname oder Firma
 	firstName: {type:String, required:true},				// Vorname
@@ -16,24 +17,17 @@ const importantVRDSchema = new mongoose.Schema({
 	type: {type:String, required:true},						//! Typ
 	variant: {type:String, required:true},					//! Variante
 	version: {type:String, required:true},					//! Version
+	tasks: {
+		type: [
+			{
+				type: taskSchema
+			},
+		],
+		default: []
+	}
 });
 
-
-
-const extraCarDataSchema = new mongoose.Schema({
-	tasks: {type:Array, default:[]},
-});
-
-
-const carSchema = new mongoose.Schema({
-	importantVRD: {type:importantVRDSchema},
-	// VRD: {type:VRDSchema},
-	extraCarData: {type:extraCarDataSchema},
-});
-
-export const carModel = mongoose.models.car || mongoose.model("car", carSchema);
-
-
+export default carSchema;
 
 
 
