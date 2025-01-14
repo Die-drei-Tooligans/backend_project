@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import carSchema from "./carModel.js";
 import personalDataSchema from "./personalDataModel.js";
-import { companySchema } from "./companyModel.js";
 
 const userSchema = new mongoose.Schema(
 	{
@@ -32,7 +31,7 @@ const adminSchema = new mongoose.Schema(
 		person: { type: personalDataSchema },
 		company: {
 			type: {
-				type: companySchema
+				type: mongoose.Schema.Types.ObjectId, ref: "company"
 			},
 		},
 	},
