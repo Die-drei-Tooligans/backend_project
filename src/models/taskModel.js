@@ -1,29 +1,36 @@
 import mongoose from "mongoose";
 
-const topicSchema = new mongoose.Schema({
-	topic: {type:String, required:true},
-	image: {type:String, required:true}
-},{minimize:false})
+const topicSchema = new mongoose.Schema(
+	{
+		topic: { type: String, required: false },
+		image: { type: String, required: false },
+	},
+	{ minimize: false }
+);
 
-export const taskSchema = new mongoose.Schema({
-    name: {type:String, required:true, unique:true},
-    topic: {type:String, required:true},
-    image: {type:String, required:true},
-    about: {type:String, required:true},
-    timeRequired: {type:Number, required:true},
-    isFree: {type:Boolean, required:true},
-    isDoneBefore: {type:Boolean, required:true},
-    doneLast: {type:Date, required:true},
-    costs: {type:Number, required:true},
-    neededMaterials: [
-        {
-            name: {type:String, required:true},
-            image: {type:String, required:true},
-            quantity: {type:Number, required:true}
-        }
-    ],
-    slots_booked: {type:Object, default:{}}
-},{minimize:false})
+export const taskSchema = new mongoose.Schema(
+	{
+		name: { type: String, required: false, unique: true },
+		topic: { type: String, required: false },
+		image: { type: String, required: false },
+		about: { type: String, required: false },
+		timeRequired: { type: Number, required: false },
+		isFree: { type: Boolean, required: false },
+		isDoneBefore: { type: Boolean, required: false },
+		doneLast: { type: Date, required: false },
+		costs: { type: Number, required: false },
+		neededMaterials: [
+			{
+				name: { type: String, required: false },
+				image: { type: String, required: false },
+				quantity: { type: Number, required: false },
+			},
+		],
+		slots_booked: { type: Object, default: {} },
+	},
+	{ minimize: false }
+);
 
-export const Topic = mongoose.models.topic || mongoose.model('topic', topicSchema)
-export const Task = mongoose.models.task || mongoose.model('task', taskSchema)
+export const Topic =
+	mongoose.models.topic || mongoose.model("topic", topicSchema);
+export const Task = mongoose.models.task || mongoose.model("task", taskSchema);
