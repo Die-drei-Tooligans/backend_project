@@ -2,7 +2,7 @@ import express from "express";
 
 import {
     createAdmin,
-    //getAdmin,
+    getAdmin,
     loginAdmin
     //softDeleteAdmin,
     //editAdmin
@@ -16,7 +16,7 @@ adminRouter.route("/")
     .post(createAdmin)
 
 adminRouter.route("/:id")
-    //.get(getAdmin)
+    .get(getAdmin)
     .post(loginAdmin)
     //.patch(softDeleteAdmin)
     //.put(editAdmin)
