@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 import express from "express";
 import cors from "cors";
 
+import registerRouter from "./src/routes/registerRouter.js";
+import loginRouter from "./src/routes/loginRouter.js";
 import userRouter from "./src/routes/userRouter.js";
 import adminRouter from "./src/routes/adminRouter.js";
-
-import { verifyPassword } from "./src/utils/auth/verifyPassword.js";
+import taskRouter from "./src/routes/taskRouter.js";
 
 const app = express();
 
@@ -18,9 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 const URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT;
 
-app.use("/", userRouter);
-// app.use("/loginnew", regLogRouter);
+app.use("/register", registerRouter);
+app.use("/login", loginRouter);
+app.use("/user", userRouter);
 app.use('/admin', adminRouter);
+app.use("/tasks", taskRouter);
 
 mongoose
 	.connect(URL)

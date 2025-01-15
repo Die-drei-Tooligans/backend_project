@@ -1,32 +1,42 @@
 import express from "express";
-import { verifyToken } from "../utils/auth/verifyToken.js";
-import { createToken } from "../utils/auth/createToken.js";
 
 import {
-	getAllUsers,
-	deleteAllUsers,
-	createUser,
-	login,
-	editSingleUser,
-	editPassword,
-	deleteSingleUser,
-	getSingelUser,
+	// getSingleUser,
+	// softDeleteUser,
+	// editSingleUser
 } from "../controller/userController.js";
 
-import { authorize } from "../middleware/authorize.js";
+import {
+	// getAllOwnCars,
+	// createCar,
+	// softDeleteAllOwnCars,
+	// getSingleOwnCar,
+	// softDeleteOwnCar,
+	// editOwnCar
+} from "../controller/carController.js";
 
 const userRouter = express.Router();
-
-userRouter.route("/login").get(login);
-
-userRouter.route("/").get(getAllUsers).post(createUser).delete(deleteAllUsers);
+//? http://localhost:3000/user
 
 userRouter
-	.route("/user")
-	.delete(authorize, deleteSingleUser)
-	.patch(authorize, editSingleUser)
-	.get(getSingelUser);
+	.route("/")
+	// .get(getSingelUser)
+	// .post()
+	// .patch(softDeleteUser)
+	// .put(editSingleUser)
 
-userRouter.route("/password").patch(editPassword);
+userRouter
+	.route("/cars")
+	// .get(getAllOwnCars)
+	// .post(createCar)
+	// .patch(softDeleteAllOwnCars)
+	// .put()
+
+userRouter
+	.route("/cars/:id")
+	// .get(getSingleOwnCar)
+	//.post()
+	// .patch(softDeleteOwnCar)
+	// .put(editOwnCar)
 
 export default userRouter;
