@@ -1,22 +1,17 @@
 import express from "express";
 import {
-  getAllTasks,
-  getTask,
-  createTask,
-  updateTask,
-  softDeleteTask,
-  deleteTask,
+  // getAllTasks,
+  // getTask
 } from "../controller/taskController.js";
+
+
 const taskRouter = express.Router();
+//? http://localhost/3000/tasks
 
 taskRouter
-  .route("/tasks")
-  .get(getAllTasks)
-  .post(createTask);
+  .route("/")
+  // .get(getAllTasks)
 
 taskRouter
-  .route("/tasks/:id")
-  .get(getTask)
-  .patch(softDeleteTask)
-  .put(updateTask)
-  .delete(deleteTask);
+  .route("/:id")
+  // .get(getTask)
