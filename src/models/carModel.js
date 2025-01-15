@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { taskSchema } from "./taskModel.js";
 
 const carSchema = new mongoose.Schema({
+	deleted: {type:Boolean, default:false},
 	licensePlate: {type:String, required:true}, 			// Kennzeichen
 	lastNameOrCompany: {type:String, required:true}, 		// Nachname oder Firma
 	firstName: {type:String, required:true},				// Vorname
@@ -17,15 +17,8 @@ const carSchema = new mongoose.Schema({
 	type: {type:String, required:true},						//! Typ
 	variant: {type:String, required:true},					//! Variante
 	version: {type:String, required:true},					//! Version
-	tasks: {
-		type: [
-			{
-				type: taskSchema
-			},
-		],
-		default: []
-	}
-});
+	tasks: {type:Array, default:[]}							// Amfallende Reperaturen
+}, { minimize: false });
 
 export default carSchema;
 

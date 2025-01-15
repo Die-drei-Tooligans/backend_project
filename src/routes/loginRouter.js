@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { loginUser, loginAdmin } from '../controllers/loginController.js';
+import { loginUser, loginAdmin } from '../controller/loginController.js';
 
 const loginRouter = express.Router();
 //? http://localhost:3000/login

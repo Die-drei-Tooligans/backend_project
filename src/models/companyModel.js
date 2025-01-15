@@ -4,6 +4,7 @@ import { taskSchema } from "./taskModel.js";
 
 const companySchema = new mongoose.Schema(
 	{
+		deleted: { type: Boolean, default: false },
 		name: { type: String, required: true },
 		adress: { type: adressSchema, required: true },
 		phone: { type: Number, required: true },
