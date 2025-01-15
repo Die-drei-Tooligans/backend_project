@@ -4,6 +4,7 @@ import personalDataSchema from "./personalDataModel.js";
 
 const userSchema = new mongoose.Schema(
 	{
+		deleted: { type: Boolean, default: false },
 		person: { type: personalDataSchema },
 		cars: {
 			type: [
@@ -28,6 +29,7 @@ const userSchema = new mongoose.Schema(
 
 const adminSchema = new mongoose.Schema(
 	{
+		deleted: { type: Boolean, default: false },
 		person: { type: personalDataSchema },
 		company: {
 			type: {
@@ -41,7 +43,14 @@ const adminSchema = new mongoose.Schema(
 
 userSchema.methods.toJSON = function () {
 	const obj = this.toObject();
-	delete obj.password;
+	delete obj.person.password;
+	delete obj._id;
+	return obj;
+};
+
+adminSchema.methods.toJSON = function () {
+	const obj = this.toObject();
+	delete obj.person.password;
 	delete obj._id;
 	return obj;
 };

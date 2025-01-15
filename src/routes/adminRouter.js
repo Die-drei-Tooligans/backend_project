@@ -1,18 +1,18 @@
 import express from "express";
 
 import {
-    // getAdmin,
-    // softDeleteAdmin,
-    // editAdmin
+    getAdmin,
+    softDeleteAdmin,
+    editAdmin
 } from "../controller/adminController.js";
 
 import {
-    // getAllUsers,
-    // deleteAllUsers,
-    // deleteUser,
+    getAllUsers,
+    deleteAllUsers,
+    deleteUser,
 } from "../controller/userController.js";
 
-import { deleteSingleCar } from "../controller/carController.js";
+import { deleteCar } from "../controller/carController.js";
 
 import {
     // getAllOwnShops,
@@ -40,23 +40,23 @@ const adminRouter = express.Router();
 
 adminRouter
     .route("/:id")
-    // .get(getAdmin)
+    .get(getAdmin)
     // .post()
-    // .patch(softDeleteAdmin)
-    // .put(editAdmin)
+    .patch(softDeleteAdmin)
+    .put(editAdmin)
 
 adminRouter
     .route("/manageusers")
-    // .get(getAllUsers)
-    // .delete(deleteAllUsers)
+    .get(getAllUsers)
+    .delete(deleteAllUsers)
 
 adminRouter
     .route("/manageusers/:id")
-    // .delete(deleteUser)
+    .delete(deleteUser)
 
 adminRouter
     .route("/managecars/:id")
-    // .delete(deleteSingleCar)
+    .delete(deleteCar)
 
 adminRouter
     .route("/manageshops")

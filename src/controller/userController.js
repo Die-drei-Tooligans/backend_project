@@ -3,23 +3,6 @@ import bcrypt from "bcrypt";
 import { User } from "../models/userModel.js";
 
 
-export const getAllUsers = async (req, res, next) => {
-	try {
-		res.json(await User.find());
-	} catch (error) {
-		next(error);
-	}
-};
-
-export const deleteAllUsers = async (req, res, next) => {
-	try {
-		await User.deleteMany();
-
-		res.status(201).json({ message: `Deleted all users.` });
-	} catch (error) {
-		next(error);
-	}
-};
 
 export const getSingelUser = async (req, res, next) => {
 	try {
@@ -34,20 +17,6 @@ export const getSingelUser = async (req, res, next) => {
 	}
 };
 
-
-
-
-export const deleteSingleUser = async (req, res, next) => {
-	try {
-		await User.deleteOne({ username: req.body.username });
-		res.status(202).json({ message: `${req.body.username} deleted` });
-	} catch (error) {
-		console.dir(error, { depth: null });
-		throw new Error(error);
-	}
-};
-// : AUTHORIZE AUTHORIZE AUTHORIZE AUTHORIZE AUTHORIZE
-// : AUTHORIZE AUTHORIZE AUTHORIZE AUTHORIZE AUTHORIZE
 
 export const editSingleUser = async (req, res, next) => {
 	try {
@@ -102,4 +71,37 @@ export const editPassword = async (req, res, next) => {
 export const setUserRoles = async (req, res, next) => {
 	try {
 	} catch (error) {}
+};
+
+
+
+
+// ADMIN ADMIN ADMIN --> :3000/admin/manageusers
+export const getAllUsers = async (req, res, next) => {
+	try {
+		res.json(await User.find());
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const deleteAllUsers = async (req, res, next) => {
+	try {
+		await User.deleteMany();
+
+		res.status(201).json({ message: `Deleted all users.` });
+	} catch (error) {
+		next(error);
+	}
+};
+
+// ADMIN ADMIN ADMIN --> :3000/admin/manageusers/:id
+export const deleteUser = async (req, res, next) => {
+	try {
+		await User.deleteOne({ username: req.body.username });
+		res.status(202).json({ message: `${req.body.username} deleted` });
+	} catch (error) {
+		console.dir(error, { depth: null });
+		throw new Error(error);
+	}
 };
