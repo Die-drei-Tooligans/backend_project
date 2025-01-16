@@ -1,19 +1,19 @@
 import mongoose from "mongoose";
 import adressSchema from "./adressModel.js";
-import { taskSchema } from "./taskModel.js";
 
 const companySchema = new mongoose.Schema(
 	{
 		deleted: { type: Boolean, default: false },
-		name: { type: String, required: true },
-		adress: { type: adressSchema, required: true },
-		phone: { type: Number, required: true },
-		email: { type: String, required: true },
-		website: { type: String, required: true },
-		logo: { type: String, required: true },
-		about: { type: String, required: true },
-		openingHours: { type: String, required: true },
-		numberOfPossibilities: { type: Number, required: true },
+		fitAdmin: { type: String, required: false },
+		name: { type: String, required: false },
+		adress: { type: adressSchema, required: false },
+		phone: { type: Number, required: false },
+		email: { type: String, required: false },
+		website: { type: String, required: false },
+		logo: { type: String, required: false },
+		about: { type: String, required: false },
+		openingHours: { type: String, required: false },
+		numberOfPossibilities: { type: Number, required: false },
 		bookings: {
 			type: [
 				{
@@ -22,16 +22,10 @@ const companySchema = new mongoose.Schema(
 			],
 			default: [],
 		},
-		tasks: {
-			type: [
-				{
-					type: taskSchema
-				},
-			],
-		},
+		tasks: { type: Array, default: []},
 	},
 	{ minimize: false }
 );
 
-export const companyModel =
+export const Company =
 	mongoose.models.company || mongoose.model("company", companySchema);
