@@ -1,8 +1,8 @@
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 
-export const compareWithHashedPassword = async (
-	passwordFromReq,
-	passwordFromDB
-) => {
-	return bcrypt.compare(passwordFromReq, passwordFromDB);
-};
+// export const compareWithHashedPassword = async (
+// 	passwordFromReq,
+// 	passwordFromDB
+// ) => {
+// 	return bcrypt.compare(passwordFromReq, passwordFromDB);
+// };
