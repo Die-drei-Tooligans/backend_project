@@ -10,7 +10,9 @@ import adminRouter from "./src/routes/adminRouter.js";
 import taskRouter from "./src/routes/taskRouter.js";
 
 import { hashPassword } from "./src/utils/auth/hashPassword.js";
-// import { createToken } from "./src/utils/auth/createToken.js";
+import { authorize } from "./src/utils/auth/authController.js";
+import { invalidPathHandler } from "./src/middleware/invalidPathHandler.js";
+import { errorHandler } from "./src/middleware/errorHandler.js";
 
 const app = express();
 
@@ -24,9 +26,12 @@ const PORT = process.env.PORT;
 
 app.use("/register", hashPassword, registerRouter);
 app.use("/login", loginRouter);
-app.use("/user", userRouter);
-app.use("/admin", adminRouter);
+app.use("/user", authorize("user"), userRouter);
+app.use("/admin", authorize("admin"), adminRouter);
 app.use("/tasks", taskRouter);
+
+app.use("*", invalidPathHandler);
+app.use(errorHandler);
 
 mongoose
 	.connect(URL)

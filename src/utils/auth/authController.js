@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
-export function authorize2(roles = []) {
+export function authorize(roles = []) {
 	return (req, res, next) => {
 		cookieParser()(req, res, () => {});
 		const token = req.cookies.token;
