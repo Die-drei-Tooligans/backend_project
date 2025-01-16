@@ -22,6 +22,29 @@ export const getSingleUser = async (req, res, next) => {
 	}
 };
 
+//? http://localhost:3000/user --- POST
+
+export const reactivateUser = async (req, res) => {
+    try {
+        const { mail } = req.body.person;
+		const user = await User.person.findOne({ mail });
+
+        if (!user) {
+            const error = new Error("User could not be found.");
+            error.status = 404;
+            next(error);
+        }
+        user.deleted = false;
+        await user.save();
+        res.json({message: "User reactivated successfully"});
+    } catch (error) {
+        error.message = "User could not be reactivated.";
+        error.status = 400;
+        next(error);
+
+    }
+}
+
 //? http://localhost:3000/user --- PATCH
 
 export const softDeleteUser = async (req, res) => {
