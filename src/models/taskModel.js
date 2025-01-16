@@ -11,7 +11,8 @@ const topicSchema = new mongoose.Schema(
 export const taskSchema = new mongoose.Schema(
 	{
 		deleted: { type: Boolean, default: false },
-		name: { type: String, required: false, unique: true },
+		fitAdmin: { type: String, required: false },
+		name: { type: String, required: false },
 		topic: { type: String, required: false },
 		image: { type: String, required: false },
 		about: { type: String, required: false },
@@ -35,3 +36,4 @@ export const taskSchema = new mongoose.Schema(
 export const Topic =
 	mongoose.models.topic || mongoose.model("topic", topicSchema);
 
+	export const Task = mongoose.models.task || mongoose.model("task", taskSchema);

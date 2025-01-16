@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 
 import { User } from "../models/userModel.js";
+import { Admin } from "../models/userModel.js";
 import { sendEmail } from "../services/sendEmail.js";
 
 export const createUser = async (req, res, next) => {
@@ -27,6 +28,7 @@ export const createUser = async (req, res, next) => {
 };
 
 export const createAdmin = async (req, res, next) => {
+
 	try {
 		const { firstname, username, mail, password } = req.body.person;
 
@@ -48,3 +50,4 @@ export const createAdmin = async (req, res, next) => {
 		console.dir(error, { depth: null });
 	}
 };
+

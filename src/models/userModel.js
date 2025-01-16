@@ -30,12 +30,7 @@ const userSchema = new mongoose.Schema(
 const adminSchema = new mongoose.Schema(
 	{
 		deleted: { type: Boolean, default: false },
-		person: { type: personalDataSchema },
-		company: {
-			type: {
-				type: mongoose.Schema.Types.ObjectId, ref: "company"
-			},
-		},
+		person: { type: personalDataSchema }
 	},
 	{ minimize: false },
 	{ timestamps: true }
