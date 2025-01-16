@@ -2,8 +2,6 @@ import bcrypt from "bcrypt";
 
 import { User } from "../models/userModel.js";
 
-
-
 export const getSingelUser = async (req, res, next) => {
 	try {
 		const { mail } = req.body.person;
@@ -17,14 +15,16 @@ export const getSingelUser = async (req, res, next) => {
 	}
 };
 
-
 export const editSingleUser = async (req, res, next) => {
 	try {
-		const user = await User.findOne({ username: req.body.username });
+		const user = await User.findOne({
+			"person.username": req.body.person.username,
+		});
 		const samePassword = await bcrypt.compare(
-			req.body.password,
-			user.password
+			req.body.person.password,
+			user.person.password
 		);
+
 		console.log("editSingleUser");
 		const { password, ...rest } = req.body;
 
@@ -72,9 +72,6 @@ export const setUserRoles = async (req, res, next) => {
 	try {
 	} catch (error) {}
 };
-
-
-
 
 // ADMIN ADMIN ADMIN --> :3000/admin/manageusers
 export const getAllUsers = async (req, res, next) => {
