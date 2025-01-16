@@ -23,7 +23,7 @@ export const loginUser = async (req, res, next) => {
 		}
 
 		const token = await jwt.sign(
-			{ username: user.person.username, mail: user.person.mail },
+			{ username: user.person.username, role: user.role },
 			SECRET_KEY,
 			{
 				expiresIn: "1h",
@@ -31,7 +31,7 @@ export const loginUser = async (req, res, next) => {
 		);
 
 		if (!token) {
-			return res.status(400).json({ messgae: "Invlid token." });
+			return res.status(400).json({ messgae: "No token created." });
 		}
 
 		res.status(200)

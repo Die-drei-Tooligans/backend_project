@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 
 import { User } from "../models/userModel.js";
 
+
 /// USER & ADMIN USER & ADMIN USER & ADMIN USER & ADMIN USER & ADMIN
 //? http://localhost:3000/user --- GET
 

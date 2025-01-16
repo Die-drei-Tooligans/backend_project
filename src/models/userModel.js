@@ -4,6 +4,7 @@ import personalDataSchema from "./personalDataModel.js";
 const userSchema = new mongoose.Schema(
 	{
 		deleted: { type: Boolean, default: false },
+		role: { type: String, enum: ["admin", "user"] },
 		person: { type: personalDataSchema },
 		bookings: {
 			type: [
@@ -21,7 +22,8 @@ const userSchema = new mongoose.Schema(
 const adminSchema = new mongoose.Schema(
 	{
 		deleted: { type: Boolean, default: false },
-		person: { type: personalDataSchema }
+    role: { type: String, enum: ["admin", "user"] },
+		person: { type: personalDataSchema },
 	},
 	{ minimize: false },
 	{ timestamps: true }
