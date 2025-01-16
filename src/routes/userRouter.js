@@ -2,9 +2,9 @@ import express from "express";
 import { authorize2 } from "../controller/authController.js";
 
 import {
-	// getSingleUser,
-	// softDeleteUser,
-	editSingleUser,
+	getSingleUser,
+	softDeleteUser,
+	editSingleUser
 } from "../controller/userController.js";
 
 import // getAllOwnCars,
@@ -20,7 +20,7 @@ const userRouter = express.Router();
 
 userRouter
 	.route("/")
-	// .get(getSingelUser)
+	.get(getSingleUser)
 	// .post()
 	// .patch(softDeleteUser)
 	.put(authorize2("admin"), editSingleUser);

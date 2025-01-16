@@ -2,78 +2,78 @@ import bcrypt from "bcrypt";
 
 import { User } from "../models/userModel.js";
 
-export const getSingelUser = async (req, res, next) => {
+
+/// USER & ADMIN USER & ADMIN USER & ADMIN USER & ADMIN USER & ADMIN
+//? http://localhost:3000/user --- GET
+
+export const getSingleUser = async (req, res, next) => {
 	try {
 		const { mail } = req.body.person;
 		const user = await User.person.findOne({ mail });
+
 		if (!user) {
 			return res.status(400).json({ message: "Wrong mail adress" });
 		}
 		res.status(200).json({ message: user });
 	} catch (error) {
+		error.message = "User could not be found.";
+        error.status = 400;
 		next(error);
 	}
 };
+
+//? http://localhost:3000/user --- PATCH
+
+export const softDeleteUser = async (req, res) => {
+    try {
+        const { mail } = req.body.person;
+		const user = await User.person.findOne({ mail });
+
+        if (!user) {
+            const error = new Error("User could not be found.");
+            error.status = 404;
+            next(error);
+        }
+        user.deleted = true;
+        await user.save();
+        res.json({message: "User soft deleted successfully."});
+    } catch (error) {
+        error.message = "User could not be deleted.";
+        error.status = 400;
+        next(error);
+    }
+}
+
+//? http://localhost:3000/user --- PUT
 
 export const editSingleUser = async (req, res, next) => {
 	try {
-		const user = await User.findOne({
-			"person.username": req.body.person.username,
-		});
-		const samePassword = await bcrypt.compare(
-			req.body.person.password,
-			user.person.password
-		);
+		const { mail } = req.body.mail;
+		const editedData = req.body.person;
 
-		console.log("editSingleUser");
-		const { password, ...rest } = req.body;
-
-		if (samePassword) {
-			const updatedUser = await User.updateOne({ _id: user._id }, rest);
-			return res.json({ message: "Done", updatedUser });
-		}
-	} catch (error) {
-		res.status(400).json({ message: "Could not edit User" });
-	}
-};
-
-export const editPassword = async (req, res, next) => {
-	try {
-		const user = await User.findOne({ username: req.body.username });
-
-		if (!user) {
-			return res.status(404).json({ message: "User not found" });
-		}
-
-		const isSamePassword = await bcrypt.compare(
-			req.body.password,
-			user.password
-		);
-
-		if (isSamePassword) {
-			return res.status(400).json({
-				message:
-					"New password cannot be the same as the current password.",
+		const user = await User.person.findOne(mail, editedData,
+			{
+				new: true,
+				runValidators: true,
 			});
-		}
-
-		const hashedPassword = await bcrypt.hash(req.body.password, 10);
-		await User.updateOne({ _id: user._id }, { password: hashedPassword });
-
-		return res
-			.status(200)
-			.json({ message: "Password updated successfully." });
+		
+			if(!user){
+				const error = new Error("User could not be found.");
+				error.status = 404;
+				next(error);
+			}
+			res.json({message: "User edited successfully"});
 	} catch (error) {
-		next(error);
+		error.message = "User could not be updated.";
+        error.status = 400;
+        next(error);
 	}
 };
 
-export const setUserRoles = async (req, res, next) => {
-	try {
-	} catch (error) {}
-};
+// ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN
 
-// ADMIN ADMIN ADMIN --> :3000/admin/manageusers
+//? http://localhost:3000/admin/manageusers --- GET
+
 export const getAllUsers = async (req, res, next) => {
 	try {
 		res.json(await User.find());
@@ -81,6 +81,8 @@ export const getAllUsers = async (req, res, next) => {
 		next(error);
 	}
 };
+
+//? http://localhost:3000/admin/manageusers --- DELETE
 
 export const deleteAllUsers = async (req, res, next) => {
 	try {
@@ -92,7 +94,8 @@ export const deleteAllUsers = async (req, res, next) => {
 	}
 };
 
-// ADMIN ADMIN ADMIN --> :3000/admin/manageusers/:id
+//? http://localhost:3000/admin/manageusers/:id --- DELETE
+
 export const deleteUser = async (req, res, next) => {
 	try {
 		await User.deleteOne({ username: req.body.username });
