@@ -53,20 +53,21 @@ export const loginAdmin = async (req, res, next) => {
 
 		const hashed = await bcrypt.compare(
 			req.body.person.password,
-			user.person.password
+			admin.person.password
 		);
 
 		if (!admin || !hashed) {
 			return res.json({ message: "Invalid credentials" });
 		}
 
-		const token = await createToken(
-			{ username: user.person.username },
+		const token = await jwt.sign(
+			{ username: admin.person.username },
 			SECRET_KEY,
 			{
 				expiresIn: "1h",
 			}
 		);
+
 		console.log(token);
 		res.status(200)
 			.cookie("token", token, {
