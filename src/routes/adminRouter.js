@@ -16,7 +16,7 @@ import { deleteCar } from "../controller/carController.js";
 
 import {
     // getAllOwnShops,
-    // createShop,
+    createShop
     // softDeleteAllOwnShops,
     // deleteAllOwnShops,
     // getSingleOwnShop,
@@ -26,7 +26,7 @@ import {
 } from "../controller/shopController.js";
 
 import {
-    // createTask,
+    createTask
     // softDeleteAllOwnTasks,
     // deleteAllOwnTasks,
     // softDeleteOwnTask,
@@ -39,7 +39,7 @@ const adminRouter = express.Router();
 //? http://localhost:3000/admin
 
 adminRouter
-    .route("/:id")
+    .route("/manageprofile/:id")
     .get(getAdmin)
     // .post()
     .patch(softDeleteAdmin)
@@ -61,7 +61,7 @@ adminRouter
 adminRouter
     .route("/manageshops")
     // .get(getAllOwnShops)
-    // .post(createShop)
+    .post(createShop)
     // .patch(softDeleteAllOwnShops)
     // .delete(deleteAllOwnShops)
     
@@ -74,7 +74,7 @@ adminRouter
 
 adminRouter
     .route("/managetasks")
-    // .post(createTask)
+    .post(createTask)
     // .patch(softDeleteAllOwnTasks)
     // .delete(deleteAllOwnTasks)
 

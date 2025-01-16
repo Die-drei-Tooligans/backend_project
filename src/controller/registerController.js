@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 
 import { User } from "../models/userModel.js";
+import { Admin } from "../models/userModel.js";
 import { sendEmail } from "../services/sendEmail.js";
 
 export const createUser = async (req, res, next) => {
@@ -33,6 +34,7 @@ export const createUser = async (req, res, next) => {
 export const createAdmin = async (req, res, next) => {
     try {
         const { firstname, username, mail, password } = req.body.person;
+        const { company } = req.body.company;
 
         if (await Admin.findOne({ "person.username": username })) {
             return res.status(403).json({
@@ -43,7 +45,7 @@ export const createAdmin = async (req, res, next) => {
         const hashedPW = await bcrypt.hash(password, 10);
 
         const newAdmin = await Admin.create({
-            person: { ...req.body.person, password: hashedPW },
+            person: { ...req.body.person, password: hashedPW, company },
         });
         console.log(newAdmin);
 

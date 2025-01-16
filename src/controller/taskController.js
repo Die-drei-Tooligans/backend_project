@@ -1,4 +1,4 @@
-// import Task from '../models/taskModel';
+import { Task } from '../models/taskModel.js';
 
 
 
@@ -48,7 +48,10 @@ export const getTask = async (req, res) => {
 // Create a new task (admin)
 export const createTask = async (req, res) => {
     try {
-        const newTask = await Task.create(req.body);
+        const { shopId, ...rest } = req.body;
+        const newTask = await Task.create(rest);
+        const shop = await Company.findById(shopId);
+        shop.tasks.push(newTask._id);
         res.status(201).json({
             status: 'success',
             data: {
