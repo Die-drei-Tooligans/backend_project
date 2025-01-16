@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const carSchema = new mongoose.Schema({
 	deleted: {type:Boolean, default:false},
+	fitUser: {type: Array, default: []},
 	licensePlate: {type:String, required:true}, 			// Kennzeichen
 	lastNameOrCompany: {type:String, required:true}, 		// Nachname oder Firma
 	firstName: {type:String, required:true},				// Vorname
@@ -20,7 +21,7 @@ const carSchema = new mongoose.Schema({
 	tasks: {type:Array, default:[]}							// Amfallende Reperaturen
 }, { minimize: false });
 
-export default carSchema;
+export const Car = mongoose.models.car || mongoose.model("car", carSchema);
 
 
 

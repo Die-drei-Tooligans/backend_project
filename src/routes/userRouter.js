@@ -1,9 +1,9 @@
 import express from "express";
 
 import {
-	// getSingleUser,
-	// softDeleteUser,
-	// editSingleUser
+	getSingleUser,
+	softDeleteUser,
+	editSingleUser
 } from "../controller/userController.js";
 
 import {
@@ -20,10 +20,10 @@ const userRouter = express.Router();
 
 userRouter
 	.route("/")
-	// .get(getSingelUser)
+	.get(getSingleUser)
 	// .post()
-	// .patch(softDeleteUser)
-	// .put(editSingleUser)
+	.patch(softDeleteUser)
+	.put(editSingleUser)
 
 userRouter
 	.route("/cars")

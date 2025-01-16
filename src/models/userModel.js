@@ -1,19 +1,10 @@
 import mongoose from "mongoose";
-import carSchema from "./carModel.js";
 import personalDataSchema from "./personalDataModel.js";
 
 const userSchema = new mongoose.Schema(
 	{
 		deleted: { type: Boolean, default: false },
 		person: { type: personalDataSchema },
-		cars: {
-			type: [
-				{
-					type: carSchema
-				},
-			],
-			default: [],
-		},
 		bookings: {
 			type: [
 				{
