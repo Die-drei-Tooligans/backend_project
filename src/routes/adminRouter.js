@@ -15,13 +15,13 @@ import {
 import { deleteCar } from "../controller/carController.js";
 
 import {
-    // getAllOwnShops,
-    createShop
-    // softDeleteAllOwnShops,
+    getAllOwnShops,
+    createShop,
+    softDeleteAllOwnShops,
     // deleteAllOwnShops,
-    // getSingleOwnShop,
-    // softDeleteOwnShop,
-    // editOwnShop,
+    getSingleOwnShop,
+    softDeleteOwnShop,
+    editOwnShop
     // deleteSingleOwnShop,
 } from "../controller/shopController.js";
 
@@ -60,16 +60,16 @@ adminRouter
 
 adminRouter
     .route("/manageshops")
-    // .get(getAllOwnShops)
+    .get(getAllOwnShops)
     .post(createShop)
-    // .patch(softDeleteAllOwnShops)
+    .patch(softDeleteAllOwnShops)
     // .delete(deleteAllOwnShops)
     
 adminRouter
     .route("/manageshops/:id")
-    // .get(getSingleOwnShop)
-    // .patch(softDeleteOwnShop)
-    // .put(editOwnShop)
+    .get(getSingleOwnShop)
+    .patch(softDeleteOwnShop)
+    .put(editOwnShop)
     // .delete(deleteSingleOwnShop)    
 
 adminRouter

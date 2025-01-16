@@ -1,37 +1,119 @@
 import { Admin } from "../models/userModel.js";
 import { Company } from "../models/companyModel.js";
 
+
+//? http://localhost:3000/admin/manageshops
+
+export const getAllOwnShops = async (req, res, next) => {
+    try {
+        const { username } = req.body.person;
+        const admin = await Admin.findOne({ "person.username": username });
+
+        res.json(await Company.find({fitAdmin: admin._id}));
+    } catch (error) {
+        next(error);
+    }
+};
+
 export const createShop = async (req, res, next) => {
     try {
-        const { person, company } = req.body;
+        const { username } = req.body.person;
+        const { ...company } = req.body;
         
-        if (!person || !person.username) {
+        if (!username) {
             return res.status(400).json({ message: "Username is required" });
         }
 
-        // Suche den Benutzer anhand des Benutzernamens
-        const admin = await Admin.findOne({ "person.username": person.username });
+        const admin = await Admin.findOne({ "person.username": username });
 
         if (!admin) {
-            return res.status(404).json({ message: "User not found" });
+            return res.status(404).json({ message: "Admin not found" });
         }
 
-        if (!company) {
-            return res.status(400).json({ message: "Cars data is required" });
-        }
         const newCompany = await Company.create({
-                    company: { ...req.body.company },
-                });
+            fitAdmin: admin._id,
+            ...company
+        });
 
-        const updatedAdmin = await Admin.updateOne(
-            { _id: admin._id },
-            { $set: { company: newCompany } }
-        );
-        
-
-        return res.json({ message: "Car(s) added successfully", updatedAdmin });
+        return res.json({ message: "Nice to have a new company", newCompany});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Could not add car(s)" });
+        res.status(500).json({ message: "Could not add company" });
     }
 };
+
+export const softDeleteAllOwnShops = async (req, res, next) => {
+    try {
+        const { username } = req.body.person;
+        const admin = await Admin.findOne({ "person.username": username });
+
+        await Company.updateMany({ fitAdmin: admin._id }, { deleted: true });
+
+        res.json({ message: "All shops are deleted" });
+    } catch (error) {
+        next(error);
+    }
+};
+
+//? http://localhost:3000/admin/manageshops/:id
+
+export const getSingleOwnShop = async (req, res, next) => {
+    try {
+        const shop = await Company.findById(req.params.id);
+
+        if (!shop) {
+            const error = new Error("Company could not be found.");
+            error.status = 404;
+            next(error);
+        }
+        res.json(shop);
+    } catch (error) {
+        error.message = "Company could not be called.";
+        error.status = 400;
+        next(error);
+    }
+}
+
+export const softDeleteOwnShop = async (req, res) => {
+    try {
+        const shop = await Company.findById(req.params.id);
+
+        if (!shop) {
+            const error = new Error("Companycould not be found.");
+            error.status = 404;
+            next(error);
+        }
+        shop.deleted = true;
+        await shop.save();
+        res.json({message: "Company soft deleted successfully"});
+    } catch (error) {
+        error.message = "Company could not be deleted.";
+        error.status = 400;
+        next(error);
+
+    }
+}
+
+export const editOwnShop = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const editedData = req.body;
+
+        const editedShop = await Company.findByIdAndUpdate(id, editedData,
+        {
+            new: true,
+            runValidators: true,
+        });
+
+        if(!editedShop){
+            const error = new Error("Company could not be found.");
+            error.status = 404;
+            next(error);
+        }
+        res.json({message: "Company edited successfully"});
+    } catch (error) {
+        error.message = "Company could not be edited.";
+        error.status = 400;
+        next(error);
+    }
+}
