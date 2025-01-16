@@ -9,6 +9,9 @@ import userRouter from "./src/routes/userRouter.js";
 import adminRouter from "./src/routes/adminRouter.js";
 import taskRouter from "./src/routes/taskRouter.js";
 
+import { hashPassword } from "./src/utils/auth/hashPassword.js";
+// import { createToken } from "./src/utils/auth/createToken.js";
+
 const app = express();
 
 app.use(cors());
@@ -19,10 +22,10 @@ app.use(express.urlencoded({ extended: true }));
 const URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT;
 
-app.use("/register", registerRouter);
+app.use("/register", hashPassword, registerRouter);
 app.use("/login", loginRouter);
 app.use("/user", userRouter);
-app.use('/admin', adminRouter);
+app.use("/admin", adminRouter);
 app.use("/tasks", taskRouter);
 
 mongoose
