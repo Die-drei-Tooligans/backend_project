@@ -1,31 +1,30 @@
 import mongoose from "mongoose";
 
-const carSchema = new mongoose.Schema({
-	deleted: {type:Boolean, default:false},
-	fitUser: {type: Array, default: []},
-	licensePlate: {type:String, required:true}, 			// Kennzeichen
-	lastNameOrCompany: {type:String, required:true}, 		// Nachname oder Firma
-	firstName: {type:String, required:true},				// Vorname
-	adress: {type:String, required:true},					// Adresse
-	nextHU: {type:Date, required:true},						//! Nächste Hauptuntersuchung
-	dateOfFirstRegistration: {type:Date, required:true},	//! Datum der Erstzulassung
-	manufacturerNumber: {type:String, required:true},		//! Herstellernummer
-	typeNumber: {type:String, required:true},				//! Typnummer
-	vehicleClass: {type:String, required:true},				//! Fahrzeugklasse
-	FIN: {type:String, required:true},						//! Fahrzeugidentifikationsnummer (FIN)
-	checkDigit: {type:Number, required:true},				//! Prüfziffer
-	make: {type:String, required:true},						//! Marke
-	type: {type:String, required:true},						//! Typ
-	variant: {type:String, required:true},					//! Variante
-	version: {type:String, required:true},					//! Version
-	tasks: {type:Array, default:[]}							// Amfallende Reperaturen
-}, { minimize: false });
+const carSchema = new mongoose.Schema(
+	{
+		deleted: { type: Boolean, default: false },
+		fitUser: { type: Array, default: [] },
+		licensePlate: { type: String, required: true }, // Kennzeichen
+		lastNameOrCompany: { type: String, required: true }, // Nachname oder Firma
+		firstName: { type: String, required: true }, // Vorname
+		adress: { type: String, required: true }, // Adresse
+		nextHU: { type: Date, required: true }, //! Nächste Hauptuntersuchung
+		dateOfFirstRegistration: { type: Date, required: true }, //! Datum der Erstzulassung
+		manufacturerNumber: { type: String, required: true }, //! Herstellernummer
+		typeNumber: { type: String, required: true }, //! Typnummer
+		vehicleClass: { type: String, required: true }, //! Fahrzeugklasse
+		FIN: { type: String, required: true }, //! Fahrzeugidentifikationsnummer (FIN)
+		checkDigit: { type: Number, required: true }, //! Prüfziffer
+		make: { type: String, required: true }, //! Marke
+		type: { type: String, required: true }, //! Typ
+		variant: { type: String, required: true }, //! Variante
+		version: { type: String, required: true }, //! Version
+		tasks: { type: Array, default: [] }, // Amfallende Reperaturen
+	},
+	{ minimize: false }
+);
 
 export const Car = mongoose.models.car || mongoose.model("car", carSchema);
-
-
-
-
 
 /*
 const VRDSchema = new mongoose.Schema({
