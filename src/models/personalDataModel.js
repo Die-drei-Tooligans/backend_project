@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 import adressSchema from "./adressModel.js";
 
 const personalDataSchema = new mongoose.Schema(
@@ -15,6 +16,5 @@ const personalDataSchema = new mongoose.Schema(
 	},
 	{ _id: false }
 );
-
 
 export default personalDataSchema;
