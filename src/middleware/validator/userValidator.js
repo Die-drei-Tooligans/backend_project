@@ -1,6 +1,9 @@
 import { body } from "express-validator";
 
 export const userValidator = [
+	body("deleted").default(false),
+	body("role").default("user"),
+	//: person
 	body("person.firstname")
 		.optional({ nullbase: true })
 		.isString()
@@ -49,6 +52,7 @@ export const userValidator = [
 		.isDate()
 		.isDate()
 		.withMessage("MESSAGE"),
+	//: person.adress
 	body("person.adress.city")
 		.optional({ nullbase: true })
 		.isString()
@@ -58,7 +62,6 @@ export const userValidator = [
 		.isNumeric()
 		.isLength({ min: 5, max: 5 })
 		.withMessage("TEST"),
-
 	body("person.adress.street")
 		.optional({ nullbase: true })
 		.isString()
