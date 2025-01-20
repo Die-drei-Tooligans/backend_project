@@ -42,77 +42,75 @@ export const createCar = async (req, res, next) => {
     }
 };
 
-export const softDeleteAllOwnShops = async (req, res, next) => {
+export const softDeleteAllOwnCars = async (req, res, next) => {
     try {
         const { username } = req.body.person;
-        const admin = await Admin.findOne({ "person.username": username });
+        const user = await User.findOne({ "person.username": username });
 
-        await Company.updateMany({ fitAdmin: admin._id }, { deleted: true });
+        await Car.updateMany({ fitUser: user._id }, { deleted: true });
 
-        res.json({ message: "All shops are deleted" });
+        res.json({ message: "All cars are deleted" });
     } catch (error) {
         next(error);
     }
 };
 
-//? http://localhost:3000/admin/manageshops/:id
-
-export const getSingleOwnShop = async (req, res, next) => {
+export const getSingleOwnCar = async (req, res, next) => {
     try {
-        const shop = await Company.findById(req.params.id);
+        const car = await Car.findById(req.params.id);
 
-        if (!shop) {
-            const error = new Error("Company could not be found.");
+        if (!car) {
+            const error = new Error("Car could not be found.");
             error.status = 404;
             next(error);
         }
         res.json(shop);
     } catch (error) {
-        error.message = "Company could not be called.";
+        error.message = "Car could not be called.";
         error.status = 400;
         next(error);
     }
 }
 
-export const softDeleteOwnShop = async (req, res) => {
+export const softDeleteOwnCar = async (req, res) => {
     try {
-        const shop = await Company.findById(req.params.id);
+        const car = await Car.findById(req.params.id);
 
-        if (!shop) {
-            const error = new Error("Companycould not be found.");
+        if (!car) {
+            const error = new Error("Car could not be found.");
             error.status = 404;
             next(error);
         }
         shop.deleted = true;
         await shop.save();
-        res.json({message: "Company soft deleted successfully"});
+        res.json({message: "Car soft deleted successfully"});
     } catch (error) {
-        error.message = "Company could not be deleted.";
+        error.message = "Car could not be deleted.";
         error.status = 400;
         next(error);
 
     }
 }
 
-export const editOwnShop = async (req, res, next) => {
+export const editOwnCar = async (req, res, next) => {
     try {
         const { id } = req.params;
         const editedData = req.body;
 
-        const editedShop = await Company.findByIdAndUpdate(id, editedData,
+        const editedCar = await Car.findByIdAndUpdate(id, editedData,
         {
             new: true,
             runValidators: true,
         });
 
-        if(!editedShop){
-            const error = new Error("Company could not be found.");
+        if(!editedCar){
+            const error = new Error("Car could not be found.");
             error.status = 404;
             next(error);
         }
-        res.json({message: "Company edited successfully"});
+        res.json({message: "Car edited successfully"});
     } catch (error) {
-        error.message = "Company could not be edited.";
+        error.message = "Car could not be edited.";
         error.status = 400;
         next(error);
     }

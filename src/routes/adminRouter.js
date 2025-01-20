@@ -2,6 +2,7 @@ import express from "express";
 
 import {
     getAdmin,
+    reactivateAdmin,
     softDeleteAdmin,
     editAdmin
 } from "../controller/adminController.js";
@@ -41,7 +42,7 @@ const adminRouter = express.Router();
 adminRouter
     .route("/manageprofile/:id")
     .get(getAdmin)
-    // .post()
+    .post(reactivateAdmin)
     .patch(softDeleteAdmin)
     .put(editAdmin)
 
@@ -68,6 +69,7 @@ adminRouter
 adminRouter
     .route("/manageshops/:id")
     .get(getSingleOwnShop)
+    // .post(reactivateShop)
     .patch(softDeleteOwnShop)
     .put(editOwnShop)
     // .delete(deleteSingleOwnShop)    
