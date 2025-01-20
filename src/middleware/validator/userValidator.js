@@ -56,7 +56,8 @@ export const userValidator = [
 	body("person.adress.city")
 		.optional({ nullbase: true })
 		.isString()
-		.withMessage("Must be a Number"),
+		.isLength({ min: 3 })
+		.withMessage("Must be a String"),
 	body("person.adress.zipCode")
 		.optional({ nullbase: true })
 		.isNumeric()
