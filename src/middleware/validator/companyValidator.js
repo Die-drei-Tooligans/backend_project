@@ -1,55 +1,101 @@
 import { body } from "express-validator";
 
 export const companyValidator = [
+	body("deleted")
+		.optional()
+		.isBoolean()
+		.withMessage("Deleted must be a boolean value"),
 	body("fitAdmin")
 		.optional()
-		.trim()
 		.isString()
-		.isLength({ min: 3, max: 50 })
-		.withMessage("fitAdmin must be a string between 3 and 50 characters."),
+		.trim()
+		.isLength({ min: 1, max: 30 })
+		.withMessage("FitAdmin must be a non-empty string up to 30 characters"),
 	body("name")
 		.optional()
-		.trim()
 		.isString()
-		.isLength({ min: 2, max: 100 })
-		.withMessage("Name must be a string between 2 and 100 characters."),
+		.trim()
+		.isLength({ min: 1, max: 30 })
+		.withMessage("Name must be a non-empty string up to 30 characters"),
 	body("adress")
 		.optional()
 		.isObject()
-		.withMessage("Adress must be a valid object."),
+		.withMessage("Address must be an object"),
+	body("adress.street")
+		.optional()
+		.isString()
+		.trim()
+		.isLength({ min: 1, max: 30 })
+		.withMessage("Street must be a non-empty string up to 30 characters"),
+	body("adress.city")
+		.optional()
+		.isString()
+		.trim()
+		.isLength({ min: 1, max: 30 })
+		.withMessage("City must be a non-empty string up to 30 characters"),
+	body("adress.state")
+		.optional()
+		.isString()
+		.trim()
+		.isLength({ min: 1, max: 30 })
+		.withMessage("State must be a non-empty string up to 30 characters"),
+	body("adress.country")
+		.optional()
+		.isString()
+		.trim()
+		.isLength({ min: 1, max: 30 })
+		.withMessage("Country must be a non-empty string up to 30 characters"),
+	body("adress.zipCode")
+		.optional()
+		.isString()
+		.trim()
+		.matches(/^\d{5}(-\d{4})?$/)
+		.withMessage("Zip code must be in the format 12345 or 12345-6789"),
 	body("phone")
 		.optional()
+		.isString()
+		.trim()
 		.isMobilePhone("any")
-		.withMessage("Phone must be a valid mobile phone number."),
+		.withMessage("Phone must be a valid phone number"),
 	body("email")
 		.optional()
+		.isString()
+		.trim()
 		.isEmail()
-		.withMessage("Email must be a valid email address."),
+		.withMessage("Email must be a valid email address"),
 	body("website")
 		.optional()
+		.isString()
+		.trim()
 		.isURL()
-		.withMessage("Website must be a valid URL."),
-	body("logo").optional().isURL().withMessage("Logo must be a valid URL."),
+		.withMessage("Website must be a valid URL"),
+	body("logo")
+		.optional()
+		.isString()
+		.trim()
+		.isURL()
+		.withMessage("Logo must be a valid URL"),
 	body("about")
 		.optional()
-		.trim()
 		.isString()
-		.isLength({ max: 500 })
-		.withMessage(
-			"About must be a string with a maximum of 500 characters."
-		),
+		.trim()
+		.isLength({ min: 1, max: 300 })
+		.withMessage("About must be a non-empty string up to 300 characters"),
 	body("openingHours")
 		.optional()
-		.trim()
 		.isString()
-		.withMessage("Opening hours must be a string."),
+		.trim()
+		.isLength({ min: 1, max: 500 })
+		.withMessage(
+			"Opening hours must be a non-empty string up to 500 characters"
+		),
 	body("numberOfPossibilities")
 		.optional()
 		.isInt({ min: 0 })
-		.withMessage("Number of possibilities must be a non-negative integer."),
+		.withMessage("Number of possibilities must be a non-negative integer"),
 	body("bookings")
 		.optional()
 		.isArray()
-		.withMessage("Bookings must be an array."),
-	body("tasks").optional().isArray().withMessage("Tasks must be an array."),
+		.withMessage("Bookings must be an array"),
+	body("tasks").optional().isArray().withMessage("Tasks must be an array"),
 ];
