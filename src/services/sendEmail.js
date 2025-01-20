@@ -1,4 +1,6 @@
 import { createTransport } from "nodemailer";
+import { readFileSync } from "fs";
+
 
 const transporter = createTransport({
 	service: "gmail",
@@ -9,11 +11,12 @@ const transporter = createTransport({
 });
 
 export const sendEmail = (username, to) => {
+	const htmlTemplate = readFileSync("./src/services/emailTemplate.html", "utf8");
 	const mailOptions = {
 		from: process.env.MAILACC,
 		to,
 		SUBJECT: `Hi ${username}`,
-		text: "dies ist eine Test-Mail deiner Werkstatt.",
+		html: htmlTemplate,
 	};
 
 	transporter.sendMail(mailOptions, (error, info) => {
