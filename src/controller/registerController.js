@@ -1,8 +1,8 @@
-import bcrypt from "bcrypt";
-
 import { User } from "../models/userModel.js";
 import { Admin } from "../models/userModel.js";
 import { sendEmail } from "../services/sendEmail.js";
+
+//? http://localhost:3000/register/user --- POST
 
 export const createUser = async (req, res, next) => {
 	try {
@@ -26,6 +26,8 @@ export const createUser = async (req, res, next) => {
 		console.dir(error, { depth: null });
 	}
 };
+
+//? http://localhost:3000/register/admin --- POST
 
 export const createAdmin = async (req, res, next) => {
 

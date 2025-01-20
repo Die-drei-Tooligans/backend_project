@@ -7,6 +7,8 @@ import { User, Admin } from "../models/userModel.js";
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
+//? http://localhost:3000/login/user --- POST
+
 export const loginUser = async (req, res, next) => {
 	try {
 		const user = await User.findOne({
@@ -44,6 +46,8 @@ export const loginUser = async (req, res, next) => {
 		res.status(402).json({ message: "Some error.", error });
 	}
 };
+
+//? http://localhost:3000/login/admin --- POST
 
 export const loginAdmin = async (req, res, next) => {
 	try {

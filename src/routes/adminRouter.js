@@ -25,7 +25,7 @@ import {
     createTask,
     reactivateTask,
     softDeleteAllOwnTasks,
-    softDeleteOwnTask,
+    softDeleteSingleOwnTask,
     editOwnTask,
 } from "../controller/taskController.js";
 
@@ -65,7 +65,7 @@ adminRouter
 adminRouter
     .route("/managetasks/:id")
     .post(reactivateTask)
-    .patch(softDeleteOwnTask)
+    .patch(softDeleteSingleOwnTask)
     .put(editOwnTask)
 
 export default adminRouter;
