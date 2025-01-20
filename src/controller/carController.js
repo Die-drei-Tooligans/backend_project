@@ -1,6 +1,8 @@
 import { Car } from "../models/carModel.js";
 import { User } from "../models/userModel.js";
 
+//? http://localhost:3000/user/cars --- GET
+
 export const getAllOwnCars = async (req, res, next) => {
     try {
         const { username } = req.body.person;
@@ -13,6 +15,8 @@ export const getAllOwnCars = async (req, res, next) => {
 		next(error);
     }
 };
+
+//? http://localhost:3000/user/cars --- POST
 
 export const createCar = async (req, res, next) => {
     try {
@@ -42,6 +46,8 @@ export const createCar = async (req, res, next) => {
     }
 };
 
+//? http://localhost:3000/user/cars --- PATCH
+
 export const softDeleteAllOwnCars = async (req, res, next) => {
     try {
         const { username } = req.body.person;
@@ -54,6 +60,8 @@ export const softDeleteAllOwnCars = async (req, res, next) => {
         next(error);
     }
 };
+
+//? http://localhost:3000/user/cars/:id --- GET
 
 export const getSingleOwnCar = async (req, res, next) => {
     try {
@@ -71,6 +79,30 @@ export const getSingleOwnCar = async (req, res, next) => {
         next(error);
     }
 }
+
+//? http://localhost:3000/user/cars/:id --- POST
+
+export const reactivateCar = async (req, res) => {
+    try {
+        const car = await Car.findById(req.params.id);
+
+        if (!car) {
+            const error = new Error("Car could not be found.");
+            error.status = 404;
+            next(error);
+        }
+        car.deleted = false;
+        await car.save();
+        res.json({message: "Car reactivated successfully"});
+    } catch (error) {
+        error.message = "Car could not be reactivated.";
+        error.status = 400;
+        next(error);
+
+    }
+}
+
+//? http://localhost:3000/user/cars/:id --- PATCH
 
 export const softDeleteOwnCar = async (req, res) => {
     try {
@@ -91,6 +123,8 @@ export const softDeleteOwnCar = async (req, res) => {
 
     }
 }
+
+//? http://localhost:3000/user/cars/:id --- PUT
 
 export const editOwnCar = async (req, res, next) => {
     try {
@@ -115,16 +149,3 @@ export const editOwnCar = async (req, res, next) => {
         next(error);
     }
 }
-
-
-
-//DELETEDELETEDELETEDELETE
-export const deleteCar = async (req, res, next) => {
-    try {
-        await Car.deleteOne({ username: req.body.username });
-        res.status(202).json({ message: `${req.body.username} deleted` });
-    } catch (error) {
-        console.dir(error, { depth: null });
-        throw new Error(error);
-    }
-};

@@ -12,9 +12,12 @@ import
 	createCar,
 	softDeleteAllOwnCars,
 	getSingleOwnCar,
+	reactivateCar,
 	softDeleteOwnCar,
 	editOwnCar
 } from "../controller/carController.js";
+
+import { userValidator } from "../middleware/validator/userValidator.js";
 
 const userRouter = express.Router();
 //? http://localhost:3000/user
@@ -42,12 +45,12 @@ userRouter
 		},
 		createCar
 	)
-.patch(softDeleteAllOwnCars)
+	.patch(softDeleteAllOwnCars)
 
 userRouter
 .route("/cars/:id")
 .get(getSingleOwnCar)
-//.post()
+.post(reactivateCar)
 .patch(softDeleteOwnCar)
 .put(editOwnCar)
 

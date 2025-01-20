@@ -1,7 +1,7 @@
 import express from "express";
 import {
-  // getAllTasks,
-  // getTask
+  getAllTasks,
+  getTask
 } from "../controller/taskController.js";
 
 
@@ -10,10 +10,10 @@ const taskRouter = express.Router();
 
 taskRouter
   .route("/")
-  // .get(getAllTasks)
+  .get(getAllTasks)
 
 taskRouter
   .route("/:id")
-  // .get(getTask)
+  .get(getTask)
 
   export default taskRouter;
