@@ -11,7 +11,7 @@ const transporter = createTransport({
 });
 
 export const sendEmail = (username, to) => {
-	const htmlTemplate = readFileSync("./src/services/emailTemplate.html", "utf8");
+	const htmlTemplate = readFileSync("./src/services/registerEmail.html", "utf8");
 	const mailOptions = {
 		from: process.env.MAILACC,
 		to,
