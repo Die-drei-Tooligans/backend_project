@@ -11,7 +11,7 @@ const topicSchema = new mongoose.Schema(
 export const taskSchema = new mongoose.Schema(
 	{
 		deleted: { type: Boolean, default: false },
-		fitAdmin: { type: String, required: false },
+		fitShop: { type: String, required: false },
 		name: { type: String, required: false },
 		topic: { type: String, required: false },
 		image: { type: String, required: false },

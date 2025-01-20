@@ -7,12 +7,13 @@ import {
 } from "../controller/userController.js";
 
 import
-{ getAllOwnCars,
-createCar,
-softDeleteAllOwnCars,
-getSingleOwnCar,
-softDeleteOwnCar,
-editOwnCar
+{
+	getAllOwnCars,
+	createCar,
+	softDeleteAllOwnCars,
+	getSingleOwnCar,
+	softDeleteOwnCar,
+	editOwnCar
 } from "../controller/carController.js";
 
 const userRouter = express.Router();
@@ -27,7 +28,7 @@ userRouter
 
 userRouter
 	.route("/cars")
-	// .get(getAllOwnCars)
+	.get(getAllOwnCars)
 	.post(
 		userValidator,
 		(req, res, next) => {
@@ -40,8 +41,8 @@ userRouter
 			next();
 		},
 		createCar
-	);
-// .patch(softDeleteAllOwnCars)
+	)
+.patch(softDeleteAllOwnCars)
 
 userRouter
 .route("/cars/:id")

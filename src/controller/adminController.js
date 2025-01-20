@@ -1,7 +1,9 @@
 import "dotenv/config";
 import { Admin } from "../models/userModel.js";
 
-// ADMIN ADMIN ADMIN --> :3000/admin/:id
+// ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN ADMIN
+
+//? http://localhost:3000/admin/manageprofile/:id  --- GET
 export const getAdmin = async (req, res, next) => {
 	try {
 		const admin = await Admin.findById(req.params.id);
@@ -18,6 +20,8 @@ export const getAdmin = async (req, res, next) => {
 		next(error);
 	}
 };
+
+//? http://localhost:3000/admin/manageprofile/:id  --- POST
 
 export const reactivateAdmin = async (req, res) => {
     try {
@@ -39,6 +43,8 @@ export const reactivateAdmin = async (req, res) => {
     }
 }
 
+//? http://localhost:3000/admin/manageprofile/:id  --- PATCH
+
 export const softDeleteAdmin = async (req, res) => {
 	try {
 		const admin = await Admin.findById(req.params.id);
@@ -57,6 +63,8 @@ export const softDeleteAdmin = async (req, res) => {
 		next(error);
 	}
 };
+
+//? http://localhost:3000/admin/manageprofile/:id  --- PUT
 
 export const editAdmin = async (req, res, next) => {
 	try {
@@ -78,15 +86,5 @@ export const editAdmin = async (req, res, next) => {
 		error.message = "Admin could not be edited.";
 		error.status = 400;
 		next(error);
-	}
-};
-
-export const deleteAdmin = async (req, res, next) => {
-	try {
-		await Admin.deleteOne({ username: req.body.username });
-		res.status(202).json({ message: `${req.body.username} deleted` });
-	} catch (error) {
-		console.dir(error, { depth: null });
-		throw new Error(error);
 	}
 };

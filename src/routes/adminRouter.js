@@ -8,31 +8,25 @@ import {
 } from "../controller/adminController.js";
 
 import {
-    getAllUsers,
-    deleteAllUsers,
-    deleteUser,
+    getAllUsers
 } from "../controller/userController.js";
-
-import { deleteCar } from "../controller/carController.js";
 
 import {
     getAllOwnShops,
     createShop,
     softDeleteAllOwnShops,
-    // deleteAllOwnShops,
     getSingleOwnShop,
+    reactivateShop,
     softDeleteOwnShop,
     editOwnShop
-    // deleteSingleOwnShop,
 } from "../controller/shopController.js";
 
 import {
-    createTask
-    // softDeleteAllOwnTasks,
-    // deleteAllOwnTasks,
-    // softDeleteOwnTask,
-    // editOwnTask,
-    // deleteSingleOwnTask
+    createTask,
+    reactivateTask,
+    softDeleteAllOwnTasks,
+    softDeleteOwnTask,
+    editOwnTask,
 } from "../controller/taskController.js";
 
 
@@ -49,41 +43,29 @@ adminRouter
 adminRouter
     .route("/manageusers")
     .get(getAllUsers)
-    .delete(deleteAllUsers)
-
-adminRouter
-    .route("/manageusers/:id")
-    .delete(deleteUser)
-
-adminRouter
-    .route("/managecars/:id")
-    .delete(deleteCar)
 
 adminRouter
     .route("/manageshops")
     .get(getAllOwnShops)
     .post(createShop)
     .patch(softDeleteAllOwnShops)
-    // .delete(deleteAllOwnShops)
     
 adminRouter
     .route("/manageshops/:id")
     .get(getSingleOwnShop)
-    // .post(reactivateShop)
+    .post(reactivateShop)
     .patch(softDeleteOwnShop)
-    .put(editOwnShop)
-    // .delete(deleteSingleOwnShop)    
+    .put(editOwnShop) 
 
 adminRouter
     .route("/managetasks")
     .post(createTask)
-    // .patch(softDeleteAllOwnTasks)
-    // .delete(deleteAllOwnTasks)
+    .patch(softDeleteAllOwnTasks)
 
 adminRouter
     .route("/managetasks/:id")
-    // .patch(softDeleteOwnTask)
-    // .put(editOwnTask)
-    // .delete(deleteSingleOwnTask)
+    .post(reactivateTask)
+    .patch(softDeleteOwnTask)
+    .put(editOwnTask)
 
 export default adminRouter;

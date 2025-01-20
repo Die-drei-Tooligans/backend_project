@@ -45,26 +45,7 @@ export const getTask = async (req, res) => {
     }
 };
 
-// Create a new task (admin)
-export const createTask = async (req, res) => {
-    try {
-        const { shopId, ...rest } = req.body;
-        const newTask = await Task.create(rest);
-        const shop = await Company.findById(shopId);
-        shop.tasks.push(newTask._id);
-        res.status(201).json({
-            status: 'success',
-            data: {
-                task: newTask
-            }
-        });
-    } catch (err) {
-        res.status(400).json({
-            status: 'fail',
-            message: err.message
-        });
-    }
-};
+
 
 // Update a task (admin)
 export const updateTask = async (req, res) => {
@@ -94,7 +75,7 @@ export const updateTask = async (req, res) => {
 };
 
 // Soft delete a task (admin)
-export const softDeleteTask = async (req, res) => {
+export const softDeleteAllTasks = async (req, res) => {
     try {
         const task = await Task.findByIdAndUpdate(req.params.id, { deleted: true }, {
             new: true,
@@ -199,6 +180,46 @@ export const deleteAllOwnTasks = async (req, res) => {
     }
 };
 
+
+
+
+
+
+
+
+
+//? http://localhost:3000/admin/managetasks --- POST
+
+export const createTask = async (req, res, next) => {
+    try {
+        const { shopId, ...rest } = req.body;
+        
+        if (!shopId) {
+            return res.status(400).json({ message: "Id is required" });
+        }
+
+        const shop = await Company.findOne({ "shopId": shopId });
+
+        if (!shop) {
+            return res.status(404).json({ message: "Shop not found" });
+        }
+
+        const newTask = await Task.create({
+            fitCompany: shop._id,
+            ...rest
+        });
+
+        shop.tasks.push(newTask._id);
+
+        return res.json({ message: "Nice to have a new company", newCompany});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Could not add company" });
+    }
+};
+
+//? http://localhost:3000/admin/managetasks --- PATCH
+
 export const softDeleteAllOwnTasks = async (req, res) => {
     try {
         const tasks = await Task.updateMany({ deleted: false }, { deleted: true });
@@ -208,3 +229,24 @@ export const softDeleteAllOwnTasks = async (req, res) => {
     }
 };
 
+//? http://localhost:3000/admin/managetasks/:id --- POST 
+
+export const reactivateTask = async (req, res) => {
+    try {
+        const task = await Task.findById(req.params.id);
+
+        if (!task) {
+            const error = new Error("Task could not be found.");
+            error.status = 404;
+            next(error);
+        }
+        task.deleted = false;
+        await task.save();
+        res.json({message: "Task reactivated successfully"});
+    } catch (error) {
+        error.message = "Task could not be reactivated.";
+        error.status = 400;
+        next(error);
+
+    }
+}

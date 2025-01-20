@@ -2,7 +2,7 @@ import { Admin } from "../models/userModel.js";
 import { Company } from "../models/companyModel.js";
 
 
-//? http://localhost:3000/admin/manageshops
+//? http://localhost:3000/admin/manageshops ---GET
 
 export const getAllOwnShops = async (req, res, next) => {
     try {
@@ -14,6 +14,8 @@ export const getAllOwnShops = async (req, res, next) => {
         next(error);
     }
 };
+
+//? http://localhost:3000/admin/manageshops --- POST
 
 export const createShop = async (req, res, next) => {
     try {
@@ -42,6 +44,8 @@ export const createShop = async (req, res, next) => {
     }
 };
 
+//? http://localhost:3000/admin/manageshops --- PATCH
+
 export const softDeleteAllOwnShops = async (req, res, next) => {
     try {
         const { username } = req.body.person;
@@ -55,7 +59,7 @@ export const softDeleteAllOwnShops = async (req, res, next) => {
     }
 };
 
-//? http://localhost:3000/admin/manageshops/:id
+//? http://localhost:3000/admin/manageshops/:id --- GET
 
 export const getSingleOwnShop = async (req, res, next) => {
     try {
@@ -74,12 +78,36 @@ export const getSingleOwnShop = async (req, res, next) => {
     }
 }
 
+//? http://localhost:3000/admin/manageshops/:id --- POST
+
+export const reactivateShop = async (req, res) => {
+    try {
+        const shop = await Company.findById(req.params.id);
+
+        if (!shop) {
+            const error = new Error("Company could not be found.");
+            error.status = 404;
+            next(error);
+        }
+        shop.deleted = false;
+        await shop.save();
+        res.json({message: "Company reactivated successfully"});
+    } catch (error) {
+        error.message = "Company could not be reactivated.";
+        error.status = 400;
+        next(error);
+
+    }
+}
+
+//? http://localhost:3000/admin/manageshops/:id --- PATCH
+
 export const softDeleteOwnShop = async (req, res) => {
     try {
         const shop = await Company.findById(req.params.id);
 
         if (!shop) {
-            const error = new Error("Companycould not be found.");
+            const error = new Error("Company could not be found.");
             error.status = 404;
             next(error);
         }
@@ -93,6 +121,8 @@ export const softDeleteOwnShop = async (req, res) => {
 
     }
 }
+
+//? http://localhost:3000/admin/manageshops/:id --- PUT
 
 export const editOwnShop = async (req, res, next) => {
     try {

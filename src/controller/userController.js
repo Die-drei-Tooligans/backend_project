@@ -81,27 +81,3 @@ export const getAllUsers = async (req, res, next) => {
 		next(error);
 	}
 };
-
-//? http://localhost:3000/admin/manageusers --- DELETE
-
-export const deleteAllUsers = async (req, res, next) => {
-	try {
-		await User.deleteMany();
-
-		res.status(201).json({ message: `Deleted all users.` });
-	} catch (error) {
-		next(error);
-	}
-};
-
-//? http://localhost:3000/admin/manageusers/:id --- DELETE
-
-export const deleteUser = async (req, res, next) => {
-	try {
-		await User.deleteOne({ username: req.body.username });
-		res.status(202).json({ message: `${req.body.username} deleted` });
-	} catch (error) {
-		console.dir(error, { depth: null });
-		throw new Error(error);
-	}
-};
