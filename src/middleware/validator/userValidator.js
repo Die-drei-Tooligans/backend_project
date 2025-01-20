@@ -47,34 +47,15 @@ export const userValidator = [
 		.optional()
 		.isString()
 		.isLength({ min: 8, max: 50 })
-		.matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i")
-		.withMessage(
-			"Password must be 8-50 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
-		),
+
+		.withMessage("Password must be 8-50 characters long"),
 
 	body("person.phone")
 		.optional()
-		.isMobilePhone("any", { strictMode: true })
+		.isMobilePhone()
 		.withMessage("Please provide a valid phone number"),
 
-	body("person.dob")
-		.optional()
-		.isISO8601()
-		.toDate()
-		.custom((value) => {
-			const now = new Date();
-			const hundredYearsAgo = new Date(
-				now.getFullYear() - 100,
-				now.getMonth(),
-				now.getDate()
-			);
-			if (value > now || value < hundredYearsAgo) {
-				throw new Error(
-					"Date of birth must be between 100 years ago and today"
-				);
-			}
-			return true;
-		}),
+	body("person.dob").optional().isISO8601().toDate(),
 
 	// Address
 	body("person.address.city")
@@ -88,9 +69,9 @@ export const userValidator = [
 		.optional()
 		.isString()
 		.trim()
-		.matches(/^[0-9]{5}(-[0-9]{4})?$/)
+		.matches(/^\d{5}$/)
 		.withMessage(
-			"Please provide a valid ZIP code (e.g., 12345 or 12345-6789)"
+			"Please provide a valid ZIP code with exactly five numbers (e.g., 12345)"
 		),
 
 	body("person.address.street")
@@ -102,12 +83,8 @@ export const userValidator = [
 
 	body("person.address.streetNum")
 		.optional()
-		.isString()
-		.trim()
-		.matches(/^[0-9]+[a-zA-Z]?$/)
-		.withMessage(
-			"Street number must be a number, optionally followed by a letter"
-		),
+		.isNumeric()
+		.withMessage("Street number must be a number"),
 
 	body("person.address.numSupp")
 		.optional()

@@ -15,7 +15,7 @@ export const carValidator = [
 		.trim()
 		.isString()
 		.isLength({ min: 3, max: 9 })
-		.matches(/^[A-Z0-9]+$/)
+		.matches(/^\\[A-Z0-9]+\\$/)
 		.withMessage(
 			"License plate must be a string of 3-9 alphanumeric characters (uppercase)"
 		),

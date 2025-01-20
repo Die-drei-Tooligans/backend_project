@@ -6,8 +6,7 @@ export const taskValidator = [
 		.optional()
 		.isString()
 		.trim()
-		.notEmpty()
-		.withMessage("FitShop must be a non-empty string"),
+		.withMessage("FitShop must be a string"),
 	body("name")
 		.optional()
 		.isString()
@@ -34,7 +33,7 @@ export const taskValidator = [
 	body("timeRequired")
 		.optional()
 		.isInt({ min: 1 })
-		.withMessage("Time required must be a positive integer"),
+		.withMessage("Time required must be a positive number"),
 	body("isFree")
 		.optional()
 		.isBoolean()
@@ -47,7 +46,7 @@ export const taskValidator = [
 		.optional()
 		.isISO8601()
 		.toDate()
-		.withMessage("DoneLast must be a valid date"),
+		.withMessage("DoneLast must be a date"),
 	body("costs")
 		.optional()
 		.isFloat({ min: 0 })

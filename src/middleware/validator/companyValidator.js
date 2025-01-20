@@ -49,13 +49,13 @@ export const companyValidator = [
 		.optional()
 		.isString()
 		.trim()
-		.matches(/^\d{5}(-\d{4})?$/)
+		.matches(/^\d{5}$/)
 		.withMessage("Zip code must be in the format 12345 or 12345-6789"),
 	body("phone")
 		.optional()
 		.isString()
 		.trim()
-		.isMobilePhone("any")
+		.isMobilePhone()
 		.withMessage("Phone must be a valid phone number"),
 	body("email")
 		.optional()
@@ -85,9 +85,9 @@ export const companyValidator = [
 		.optional()
 		.isString()
 		.trim()
-		.isLength({ min: 1, max: 500 })
+		.isLength({ min: 1, max: 20 })
 		.withMessage(
-			"Opening hours must be a non-empty string up to 500 characters"
+			"Opening hours must be a non-empty string up to 200 characters"
 		),
 	body("numberOfPossibilities")
 		.optional()
