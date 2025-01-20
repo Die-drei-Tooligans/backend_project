@@ -36,4 +36,4 @@ export const taskSchema = new mongoose.Schema(
 export const Topic =
 	mongoose.models.topic || mongoose.model("topic", topicSchema);
 
-	export const Task = mongoose.models.task || mongoose.model("task", taskSchema);
+export const Task = mongoose.models.task || mongoose.model("task", taskSchema);

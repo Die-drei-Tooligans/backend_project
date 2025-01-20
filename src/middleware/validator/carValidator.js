@@ -2,15 +2,15 @@ import { body } from "express-validator";
 
 export const carValidator = [
 	body("deleted")
-		.optional({ nullbase: true })
+		.optional()
 		.isBoolean()
 		.withMessage("Deleted must be a boolean value"),
 	body("fitUser")
-		.optional({ nullbase: true })
-		.isArray()
-		.withMessage("FitUser must be an array"),
+		.optional()
+		.isString()
+		.withMessage("FitUser must be a string between 3 and 50 characters."),
 	body("licensePlate")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 3, max: 9 })
@@ -19,62 +19,62 @@ export const carValidator = [
 			"License plate must be a string of 6 alphanumeric characters"
 		),
 	body("lastNameOrCompany")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.withMessage("Last name or company name is required"),
 	body("firstName")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.withMessage("First name is required"),
 	body("address")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.withMessage("Address is required"),
 	body("nextHU")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isDate()
 		.withMessage("Next HU must be a valid date"),
 	body("dateOfFirstRegistration")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isDate()
 		.withMessage("Date of first registration must be a valid date"),
 	body("manufacturerNumber")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.withMessage("Manufacturer number is required"),
 	body("typeNumber")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.withMessage("Type number is required"),
 	body("vehicleClass")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.withMessage("Vehicle class is required"),
 	body("checkDigit")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isNumeric()
 		.withMessage("Check digit is required"),
 	body("variant")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.withMessage("Variant is required"),
 	body("version")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isString()
 		.withMessage("Version is required"),
 	body("tasks")
-		.optional({ nullbase: true })
+		.optional()
 		.trim()
 		.isArray()
 		.default([])
