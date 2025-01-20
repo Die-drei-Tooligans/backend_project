@@ -19,6 +19,26 @@ export const getAdmin = async (req, res, next) => {
 	}
 };
 
+export const reactivateAdmin = async (req, res) => {
+    try {
+        const admin = await Admin.findById(req.params.id);
+
+        if (!admin) {
+            const error = new Error("Admin could not be found.");
+            error.status = 404;
+            next(error);
+        }
+        admin.deleted = false;
+        await admin.save();
+        res.json({message: "Admin reactivated successfully"});
+    } catch (error) {
+        error.message = "Admin could not be reactivated.";
+        error.status = 400;
+        next(error);
+
+    }
+}
+
 export const softDeleteAdmin = async (req, res) => {
 	try {
 		const admin = await Admin.findById(req.params.id);

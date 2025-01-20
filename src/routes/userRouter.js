@@ -6,16 +6,14 @@ import {
 	editSingleUser,
 } from "../controller/userController.js";
 
-import {
-	// getAllOwnCars,
-	createCar,
-	// softDeleteAllOwnCars,
-	// getSingleOwnCar,
-	// softDeleteOwnCar,
-	// editOwnCar
+import
+{ getAllOwnCars,
+createCar,
+softDeleteAllOwnCars,
+getSingleOwnCar,
+softDeleteOwnCar,
+editOwnCar
 } from "../controller/carController.js";
-
-import { userValidator } from "../middleware/validator/userValidator.js";
 
 const userRouter = express.Router();
 //? http://localhost:3000/user
@@ -24,7 +22,7 @@ userRouter
 	.route("/")
 	.get(getSingleUser)
 	// .post()
-	// .patch(softDeleteUser)
+	.patch(softDeleteUser)
 	.put(editSingleUser);
 
 userRouter
@@ -44,12 +42,12 @@ userRouter
 		createCar
 	);
 // .patch(softDeleteAllOwnCars)
-// .put()
 
-userRouter.route("/cars/:id");
-// .get(getSingleOwnCar)
+userRouter
+.route("/cars/:id")
+.get(getSingleOwnCar)
 //.post()
-// .patch(softDeleteOwnCar)
-// .put(editOwnCar)
+.patch(softDeleteOwnCar)
+.put(editOwnCar)
 
 export default userRouter;
