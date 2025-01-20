@@ -46,7 +46,7 @@ export const userValidator = [
 	body("person.password")
 		.optional()
 		.isString()
-		.isLength({ min: 8, max: 50 })
+		.isLength({ min: 8, max: 90 })
 
 		.withMessage("Password must be 8-50 characters long"),
 
