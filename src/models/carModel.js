@@ -15,7 +15,7 @@ const carSchema = new mongoose.Schema(
 		vehicleClass: { type: String, required: true }, //! Fahrzeugklasse
 		FIN: { type: String, required: true }, //! Fahrzeugidentifikationsnummer (FIN)
 		checkDigit: { type: Number, required: true }, //! Prüfziffer
-		make: { type: String, required: true }, //! Marke
+		brand: { type: String, required: true }, //! Marke
 		type: { type: String, required: true }, //! Typ
 		variant: { type: String, required: true }, //! Variante
 		version: { type: String, required: true }, //! Version

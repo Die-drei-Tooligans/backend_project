@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const topicSchema = new mongoose.Schema(
 	{
-		topic: { type: String, required: false },
-		image: { type: String, required: false },
+		topic: { type: String, required: true },
+		image: { type: String, required: true },
 	},
 	{ minimize: false }
 );
@@ -11,21 +11,21 @@ const topicSchema = new mongoose.Schema(
 export const taskSchema = new mongoose.Schema(
 	{
 		deleted: { type: Boolean, default: false },
-		fitShop: { type: String, required: false },
-		name: { type: String, required: false },
-		topic: { type: String, required: false },
+		fitShop: { type: String, required: true },
+		name: { type: String, required: true },
+		topic: { type: String, required: true },
 		image: { type: String, required: false },
-		about: { type: String, required: false },
-		timeRequired: { type: Number, required: false },
-		isFree: { type: Boolean, required: false },
-		isDoneBefore: { type: Boolean, required: false },
-		doneLast: { type: Date, required: false },
-		costs: { type: Number, required: false },
+		about: { type: String, required: true },
+		timeRequired: { type: Number, required: true },
+		isFree: { type: Boolean, required: true },
+		isDoneBefore: { type: Boolean, required: true },
+		doneLast: { type: Date, required: true },
+		costs: { type: Number, required: true },
 		neededMaterials: [
 			{
-				name: { type: String, required: false },
-				image: { type: String, required: false },
-				quantity: { type: Number, required: false },
+				name: { type: String, required: true },
+				image: { type: String, required: true },
+				quantity: { type: Number, required: true },
 			},
 		],
 		slots_booked: { type: Object, default: {} },

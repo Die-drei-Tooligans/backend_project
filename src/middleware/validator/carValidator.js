@@ -2,16 +2,14 @@ import { body } from "express-validator";
 
 export const carValidator = [
 	body("deleted")
-		.optional()
+		.default(false)
 		.isBoolean()
 		.withMessage("Deleted must be a boolean value"),
 	body("fitUser")
-		.optional()
-		.isString()
-		.isLength({ min: 3, max: 50 })
-		.withMessage("FitUser must be a string between 3 and 50 characters"),
+		.isArray()
+		.default([])
+		.withMessage("FitUser must be an array."),
 	body("licensePlate")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 3, max: 9 })
@@ -20,7 +18,6 @@ export const carValidator = [
 			"License plate must be a string of 3-9 alphanumeric characters (uppercase)"
 		),
 	body("lastNameOrCompany")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 1, max: 100 })
@@ -28,7 +25,6 @@ export const carValidator = [
 			"Last name or company name must be a non-empty string up to 100 characters"
 		),
 	body("firstName")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 1, max: 50 })
@@ -36,23 +32,19 @@ export const carValidator = [
 			"First name must be a non-empty string up to 50 characters"
 		),
 	body("address")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 5, max: 200 })
 		.withMessage("Address must be a string between 5 and 200 characters"),
 	body("nextHU")
-		.optional()
 		.isISO8601()
 		.toDate()
 		.withMessage("Next HU must be a valid date"),
 	body("dateOfFirstRegistration")
-		.optional()
 		.isISO8601()
 		.toDate()
 		.withMessage("Date of first registration must be a valid date"),
 	body("manufacturerNumber")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 1, max: 50 })
@@ -60,7 +52,6 @@ export const carValidator = [
 			"Manufacturer number must be a non-empty string up to 50 characters"
 		),
 	body("typeNumber")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 1, max: 50 })
@@ -68,32 +59,32 @@ export const carValidator = [
 			"Type number must be a non-empty string up to 50 characters"
 		),
 	body("vehicleClass")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 1, max: 50 })
 		.withMessage(
 			"Vehicle class must be a non-empty string up to 50 characters"
 		),
+	body("FIN")
+		.isString()
+		.matches(/^\\[A-Z0-9]+\\$/)
+		.withMessage("Must be 17 characters long"),
 	body("checkDigit")
-		.optional()
-		.isInt({ min: 0, max: 9 })
+		.isInt({ min: 17, max: 17 })
 		.withMessage("Check digit must be a single digit between 0 and 9"),
+	body("brand").isString().isLength({ max: 30 }).withMessage("test"),
+	body("type").isString().isLength({ max: 30 }).withMessage("test"),
 	body("variant")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 1, max: 50 })
 		.withMessage("Variant must be a non-empty string up to 50 characters"),
 	body("version")
-		.optional()
 		.trim()
 		.isString()
 		.isLength({ min: 1, max: 50 })
 		.withMessage("Version must be a non-empty string up to 50 characters"),
-	body("tasks").optional().isArray().withMessage("Tasks must be an array"),
 	body("tasks.*")
-		.optional()
 		.isString()
 		.isLength({ min: 1, max: 100 })
 		.withMessage(
