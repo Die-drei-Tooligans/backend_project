@@ -33,7 +33,7 @@ export const loginUser = async (req, res, next) => {
 		);
 
 		if (!token) {
-			return res.status(400).json({ messgae: "No token created." });
+			return res.status(400).json({ message: "No token created." });
 		}
 
 		res.status(200)
