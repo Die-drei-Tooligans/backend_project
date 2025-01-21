@@ -53,9 +53,11 @@ export const userValidator = [
 	body("person.phone")
 		.optional()
 		.isMobilePhone()
+
 		.withMessage("Please provide a valid phone number"),
 
-	body("person.dob").optional().isISO8601().toDate(),
+	body("person.dob").optional()
+  .toDate(),
 
 	// Address
 	body("person.address.city")
@@ -87,6 +89,7 @@ export const userValidator = [
 		.withMessage("Street number must be a number"),
 
 	body("person.address.numSupp")
+
 		.optional()
 		.isString()
 		.trim()
