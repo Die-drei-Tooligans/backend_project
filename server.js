@@ -26,7 +26,7 @@ const PORT = process.env.PORT;
 
 app.use("/register", hashPassword, registerRouter);
 app.use("/login", loginRouter);
-app.use("/user", authorize("user"), userRouter);
+app.use("/user", authorize("user", "admin"), userRouter);
 app.use("/admin", authorize("admin"), adminRouter);
 app.use("/tasks", taskRouter);
 
