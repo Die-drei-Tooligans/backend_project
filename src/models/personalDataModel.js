@@ -6,9 +6,9 @@ const personalDataSchema = new mongoose.Schema(
 	{
 		firstname: { type: String, required: false },
 		lastname: { type: String, required: false },
-		username: { type: String, unique: true },
+		username: { type: String, unique: false },
 		image: { type: String },
-		mail: { type: String, required: false, unique: true },
+		mail: { type: String, required: false, unique: false },
 		password: { type: String, required: false },
 		phone: { type: Number, required: false },
 		adress: { type: adressSchema, required: false },

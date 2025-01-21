@@ -43,4 +43,5 @@ mongoose
 	})
 	.catch((error) => {
 		throw new Error(error);
+		// console.log(error);
 	});
