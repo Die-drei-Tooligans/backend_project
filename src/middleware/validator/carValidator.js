@@ -79,6 +79,10 @@ export const carValidator = [
 		.optional()
 		.isInt({ min: 0, max: 9 })
 		.withMessage("Check digit must be a single digit between 0 and 9"),
+	body("brand")
+		.optional()
+		.isString()
+		.withMessage("Check if input is a String"),
 	body("variant")
 		.optional()
 		.trim()

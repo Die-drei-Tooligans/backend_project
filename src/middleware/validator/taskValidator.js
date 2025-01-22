@@ -2,7 +2,7 @@ import { body } from "express-validator";
 
 export const taskValidator = [
 	body("deleted").isBoolean().default(false),
-	body("fitShop")
+	body("fitAdmin")
 		.optional()
 		.isString()
 		.trim()

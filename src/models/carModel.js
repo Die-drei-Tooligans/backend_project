@@ -7,7 +7,7 @@ const carSchema = new mongoose.Schema(
 		licensePlate: { type: String, required: true }, // Kennzeichen
 		lastNameOrCompany: { type: String, required: true }, // Nachname oder Firma
 		firstName: { type: String, required: true }, // Vorname
-		adress: { type: String, required: true }, // Adresse
+		address: { type: String, required: true }, // Adresse
 		nextHU: { type: Date, required: true }, //! Nächste Hauptuntersuchung
 		dateOfFirstRegistration: { type: Date, required: true }, //! Datum der Erstzulassung
 		manufacturerNumber: { type: String, required: true }, //! Herstellernummer
@@ -15,11 +15,11 @@ const carSchema = new mongoose.Schema(
 		vehicleClass: { type: String, required: true }, //! Fahrzeugklasse
 		FIN: { type: String, required: true }, //! Fahrzeugidentifikationsnummer (FIN)
 		checkDigit: { type: Number, required: true }, //! Prüfziffer
-		make: { type: String, required: true }, //! Marke
+		brand: { type: String, required: true }, //! Marke
 		type: { type: String, required: true }, //! Typ
 		variant: { type: String, required: true }, //! Variante
 		version: { type: String, required: true }, //! Version
-		tasks: { type: Array, default: [] }, // Amfallende Reperaturen
+		tasks: { type: Array, default: [] }, // Anfallende Reperaturen
 	},
 	{ minimize: false }
 );

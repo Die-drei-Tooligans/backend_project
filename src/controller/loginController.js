@@ -65,7 +65,7 @@ export const loginAdmin = async (req, res, next) => {
 		}
 
 		const token = await jwt.sign(
-			{ username: admin.person.username },
+			{ username: admin.person.username, role: admin.role },
 			SECRET_KEY,
 			{
 				expiresIn: "1h",

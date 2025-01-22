@@ -1,0 +1,182 @@
+[
+	{
+		"deleted": false,
+		"role": "admin",
+		"person": {
+			"firstname": "Ju",
+			"lastname": "Chang",
+			"username": "code4ju",
+			"image": "https://www.example.com/images/johndoe.jpg",
+			"mail": "code4ju@gmail.com",
+			"password": "krassesPasswort",
+			"phone": "0190666666",
+			"dob": "1979-07-16",
+			"address": {
+				"city": "Cologne",
+				"zipCode": "50931",
+				"street": "Dürenerstraße",
+				"streetNum": 112,
+				"numSupp": ""
+			}
+		}
+	},
+	{
+		"deleted": false,
+		"role": "admin",
+		"person": {
+			"firstname": "Oguz",
+			"lastname": "Sezgin",
+			"username": "sezosezo",
+			"image": "https://www.example.com/images/johndoe.jpg",
+			"mail": "sezo@mail.com",
+			"password": "krasseresPasswort",
+			"phone": "0190666666",
+			"dob": "1995-01-01",
+			"address": {
+				"city": "Madrid",
+				"zipCode": "77777",
+				"street": "Luckyplace",
+				"streetNum": 777,
+				"numSupp": "a"
+			}
+		}
+	},
+	{
+		"deleted": false,
+		"role": "admin",
+		"person": {
+			"firstname": "Lara",
+			"lastname": "Mätzold",
+			"username": "Lara",
+			"image": "https://www.example.com/images/johndoe.jpg",
+			"mail": "lara@mail.com",
+			"password": "krassestesPasswort",
+			"phone": "0190666666",
+			"dob": "2000-09-15",
+			"address": {
+				"city": "New York",
+				"zipCode": "11111",
+				"street": "Time Square",
+				"streetNum": 1,
+				"numSupp": ""
+			}
+		}
+	},
+	{
+		"deleted": false,
+		"role": "user",
+		"person": {
+			"firstname": "Albert",
+			"lastname": "Clemente",
+			"username": "RusselCrowe",
+			"image": "https://www.example.com/images/johndoe.jpg",
+			"mail": "Albert@dci-teacher.com",
+			"password": "MasterPasswort",
+			"phone": "0190666666",
+			"dob": "2000-09-15",
+			"address": {
+				"city": "Leipzig",
+				"zipCode": "77777",
+				"street": "BesteStraße",
+				"streetNum": 99,
+				"numSupp": ""
+			}
+		}
+	},
+	{
+		"licensePlate": "M-CD 5678",
+		"lastNameOrCompany": "Clemente",
+		"firstName": "Albert",
+		"address": "Marienplatz 8, 80331 Munich",
+		"nextHU": "2023-12-31T00:00:00.000Z",
+		"dateOfFirstRegistration": "2020-01-10T00:00:00.000Z",
+		"manufacturerNumber": "WDD1234567",
+		"typeNumber": "Y789012",
+		"vehicleClass": "Passenger Car",
+		"FIN": "WDDXXX0000XXX5678",
+		"checkDigit": 3,
+		"brand": "Mercedes-Benz",
+		"type": "C-Class",
+		"variant": "Maschine",
+		"version": "C200",
+		"tasks": []
+	},
+	{
+		"deleted": false,
+		"fitAdmin": "shopJu",
+		"name": "Electrical System Diagnostics",
+		"topic": "Diagnostics",
+		"image": "https://www.example.com/images/electricalsystem.jpg",
+		"about": "Troubleshoot electrical problems such as lights, power windows, and starting issues.",
+		"timeRequired": 60,
+		"isFree": false,
+		"isDoneBefore": true,
+		"doneLast": "2023-12-01T15:00:00.000Z",
+		"costs": 90.0,
+		"neededMaterials": [
+			{
+				"name": "Spark Plugs",
+				"image": "https://www.example.com/images/sparkplugs.jpg",
+				"quantity": 99
+			},
+			{
+				"name": "Gap Tool",
+				"image": "https://www.example.com/images/gaptool.jpg",
+				"quantity": 99
+			}
+		],
+		"slots_booked": {}
+	},
+	{
+		"deleted": false,
+		"fitAdmin": "shopJu",
+		"name": "AC System Diagnostics",
+		"topic": "Diagnostics",
+		"image": "https://www.example.com/images/acsystem.jpg",
+		"about": "Diagnose issues with the air conditioning system, including refrigerant leaks and compressor problems.",
+		"timeRequired": 60,
+		"isFree": false,
+		"isDoneBefore": false,
+		"doneLast": null,
+		"costs": 80.0,
+		"neededMaterials": [
+			{
+				"name": "Spark Plugs",
+				"image": "https://www.example.com/images/sparkplugs.jpg",
+				"quantity": 99
+			},
+			{
+				"name": "Gap Tool",
+				"image": "https://www.example.com/images/gaptool.jpg",
+				"quantity": 99
+			}
+		],
+		"slots_booked": {}
+	},
+	{
+		"deleted": false,
+		"fitAdmin": "shopJu",
+		"name": "Transmission Diagnostics",
+		"topic": "Diagnostics",
+		"image": "https://www.example.com/images/transmission.jpg",
+		"about": "Diagnose transmission problems such as slipping, rough shifting, or fluid leaks.",
+		"timeRequired": 90,
+		"isFree": false,
+		"isDoneBefore": true,
+		"doneLast": "2023-11-28T09:00:00.000Z",
+		"costs": 120.0,
+		"neededMaterials": [
+			{
+				"name": "Spark Plugs",
+				"image": "https://www.example.com/images/sparkplugs.jpg",
+				"quantity": 99
+			},
+			{
+				"name": "Gap Tool",
+				"image": "https://www.example.com/images/gaptool.jpg",
+				"quantity": 99
+			}
+		],
+		"slots_booked": {}
+	}
+]
